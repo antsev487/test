@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#07120f" />
+  <title>Coach Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand">
+          <div class="logo">CT</div>
+          <div>
+            <strong>Coach Toolkit</strong>
+            <span>Training and matchday admin</span>
+          </div>
+        </div>
+        <button id="logoutBtn" class="ghost hidden">Logout</button>
+      </nav>
+
+      <section class="hero-content">
+        <p class="eyebrow">Football coaching tools</p>
+        <h1>Run your team without the admin mess.</h1>
+        <p class="hero-copy">
+          Save players, plan sessions, track attendance, rate performances and write match reports from one simple coaching workspace.
+        </p>
+      </section>
+    </header>
+
+    <main>
+      <section id="setupWarning" class="card warning hidden">
+        <h2>Supabase not configured yet</h2>
+        <p>
+          Open <strong>config.js</strong>, paste your Supabase URL and anon key, then refresh.
+          The app will not save to the backend until this is done.
+        </p>
+      </section>
+
+      <section id="authView" class="card auth-card">
+        <h2>Coach login</h2>
+        <p class="muted">Create an account or log in. All coaching data is saved to your own backend account.</p>
+
+        <div class="grid two">
+          <label>Email
+            <input id="email" type="email" placeholder="coach@email.com" autocomplete="email" />
+          </label>
+          <label>Password
+            <input id="password" type="password" placeholder="Minimum 6 characters" autocomplete="current-password" />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="signUpBtn">Create account</button>
+          <button id="loginBtn" class="secondary">Login</button>
+        </div>
+        <p id="authMessage" class="message"></p>
+      </section>
+
+      <section id="appView" class="hidden">
+        <div class="coach-strip">
+          <div>
+            <p class="eyebrow">Workspace</p>
+            <h2 id="welcomeTitle">Welcome coach</h2>
+          </div>
+          <button id="refreshBtn" class="secondary">Refresh data</button>
+        </div>
+
+        <section class="stats-grid">
+          <article class="stat-card">
+            <span id="statPlayers">0</span>
+            <p>Players</p>
+          </article>
+          <article class="stat-card">
+            <span id="statSessions">0</span>
+            <p>Sessions</p>
+          </article>
+          <article class="stat-card">
+            <span id="statAttendance">0</span>
+            <p>Attendance records</p>
+          </article>
+          <article class="stat-card">
+            <span id="statMatches">0</span>
+            <p>Match reports</p>
+          </article>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Coach profile</p>
+              <h3>Your details</h3>
+            </div>
+          </div>
+          <div class="grid three">
+            <label>Name
+              <input id="coachName" placeholder="Antony" />
+            </label>
+            <label>Club / Academy
+              <input id="coachClub" placeholder="Canterbury Bankstown FC" />
+            </label>
+            <label>Age group
+              <input id="coachAgeGroup" placeholder="U18, U12, First Team..." />
+            </label>
+          </div>
+          <button id="saveProfileBtn">Save profile</button>
+        </section>
+
+        <section class="tool-nav" aria-label="Toolkit navigation">
+          <button class="tab active" data-tab="team">Team</button>
+          <button class="tab" data-tab="session">Session</button>
+          <button class="tab" data-tab="attendance">Attendance</button>
+          <button class="tab" data-tab="ratings">Ratings</button>
+          <button class="tab" data-tab="match">Match Report</button>
+        </section>
+
+        <section id="team" class="tool card active-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Team Sheet</p>
+              <h3>Player database</h3>
+            </div>
+          </div>
+
+          <div class="grid five">
+            <label>First name
+              <input id="playerFirst" placeholder="Leo" />
+            </label>
+            <label>Surname
+              <input id="playerLast" placeholder="Smith" />
+            </label>
+            <label>Position
+              <input id="playerPosition" placeholder="RB / CM / ST" />
+            </label>
+            <label>Dominant foot
+              <select id="playerFoot">
+                <option value="">Select</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Both</option>
+              </select>
+            </label>
+            <label>DOB
+              <input id="playerDob" type="date" />
+            </label>
+          </div>
+          <button id="addPlayerBtn">Add player</button>
+
+          <div class="list-head">
+            <h4>Saved players</h4>
+          </div>
+          <div id="playersList" class="list"></div>
+        </section>
+
+        <section id="session" class="tool card">
+          <p class="eyebrow">Session Planner</p>
+          <h3>Create session</h3>
+
+          <div class="grid three">
+            <label>Session title
+              <input id="sessionTitle" placeholder="Build-up through thirds" />
+            </label>
+            <label>Date
+              <input id="sessionDate" type="date" />
+            </label>
+            <label>Duration
+              <input id="sessionDuration" placeholder="75 mins" />
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>Objective
+              <textarea id="sessionObjective" placeholder="Improve ability to play through pressure and find the free player."></textarea>
+            </label>
+            <label>Setup / Equipment
+              <textarea id="sessionSetup" placeholder="30x40 area, 14 players, cones, bibs, balls, two mini goals."></textarea>
+            </label>
+          </div>
+
+          <label>Coach points
+            <textarea id="sessionCoachPoints" placeholder="Body shape, scan before receiving, third-man support, speed of ball circulation."></textarea>
+          </label>
+
+          <button id="saveSessionBtn">Save session</button>
+
+          <div class="list-head">
+            <h4>Saved sessions</h4>
+          </div>
+          <div id="sessionsList" class="list"></div>
+        </section>
+
+        <section id="attendance" class="tool card">
+          <p class="eyebrow">Attendance</p>
+          <h3>Track attendance</h3>
+
+          <div class="grid two">
+            <label>Date
+              <input id="attendanceDate" type="date" />
+            </label>
+            <label>Session note
+              <input id="attendanceNote" placeholder="Wednesday training" />
+            </label>
+          </div>
+
+          <div id="attendanceList" class="check-list"></div>
+          <button id="saveAttendanceBtn">Save attendance</button>
+
+          <div class="list-head">
+            <h4>Attendance history</h4>
+          </div>
+          <div id="attendanceHistory" class="list"></div>
+        </section>
+
+        <section id="ratings" class="tool card">
+          <p class="eyebrow">Player Ratings</p>
+          <h3>Rate players</h3>
+
+          <div class="grid two">
+            <label>Date
+              <input id="ratingsDate" type="date" />
+            </label>
+            <label>Context
+              <input id="ratingsContext" placeholder="Match vs Lions / Training" />
+            </label>
+          </div>
+
+          <div id="ratingsList" class="ratings-list"></div>
+          <button id="saveRatingsBtn">Save ratings</button>
+
+          <div class="list-head">
+            <h4>Ratings history</h4>
+          </div>
+          <div id="ratingsHistory" class="list"></div>
+        </section>
+
+        <section id="match" class="tool card">
+          <p class="eyebrow">Match Report</p>
+          <h3>Write match report</h3>
+
+          <div class="grid three">
+            <label>Opponent
+              <input id="matchOpponent" placeholder="Sydney United" />
+            </label>
+            <label>Date
+              <input id="matchDate" type="date" />
+            </label>
+            <label>Score
+              <input id="matchScore" placeholder="2-1 Win" />
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>What went well
+              <textarea id="matchPositives" placeholder="Strong pressing triggers, good compactness, created chances from wide areas."></textarea>
+            </label>
+            <label>What to improve
+              <textarea id="matchImprove" placeholder="Decision-making in final third, rest defence, defending cutbacks."></textarea>
+            </label>
+          </div>
+
+          <label>Coach summary
+            <textarea id="matchSummary" placeholder="Overall performance summary..."></textarea>
+          </label>
+
+          <button id="saveMatchBtn">Save match report</button>
+
+          <div class="list-head">
+            <h4>Saved match reports</h4>
+          </div>
+          <div id="matchesList" class="list"></div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>Coach Toolkit MVP • Free football coaching admin tools</p>
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+-- Coach Toolkit MVP database
+-- Run this in Supabase > SQL Editor.
+-- This creates auth-protected tables where each coach can only access their own data.
+
+create extension if not exists "uuid-ossp";
+
+create table if not exists profiles (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null unique references auth.users(id) on delete cascade,
+  coach_name text,
+  club text,
+  age_group text,
+  created_at timestamptz default now()
+);
+
+create table if not exists players (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  first_name text,
+  last_name text,
+  position text,
+  dominant_foot text,
+  dob date,
+  created_at timestamptz default now()
+);
+
+create table if not exists sessions (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  title text not null,
+  session_date date,
+  duration text,
+  objective text,
+  setup text,
+  coach_points text,
+  created_at timestamptz default now()
+);
+
+create table if not exists attendance (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  player_id uuid references players(id) on delete cascade,
+  attendance_date date not null,
+  present boolean default false,
+  note text,
+  created_at timestamptz default now()
+);
+
+create table if not exists player_ratings (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  player_id uuid references players(id) on delete cascade,
+  rating_date date not null,
+  context text,
+  score int check (score >= 1 and score <= 10),
+  note text,
+  created_at timestamptz default now()
+);
+
+create table if not exists match_reports (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  opponent text not null,
+  match_date date,
+  score text,
+  positives text,
+  improvements text,
+  summary text,
+  created_at timestamptz default now()
+);
+
+create index if not exists idx_profiles_user_id on profiles(user_id);
+create index if not exists idx_players_user_id on players(user_id);
+create index if not exists idx_sessions_user_id on sessions(user_id);
+create index if not exists idx_attendance_user_id on attendance(user_id);
+create index if not exists idx_ratings_user_id on player_ratings(user_id);
+create index if not exists idx_match_reports_user_id on match_reports(user_id);
+
+alter table profiles enable row level security;
+alter table players enable row level security;
+alter table sessions enable row level security;
+alter table attendance enable row level security;
+alter table player_ratings enable row level security;
+alter table match_reports enable row level security;
+
+drop policy if exists "profiles select own" on profiles;
+drop policy if exists "profiles insert own" on profiles;
+drop policy if exists "profiles update own" on profiles;
+drop policy if exists "profiles delete own" on profiles;
+create policy "profiles select own" on profiles for select using (auth.uid() = user_id);
+create policy "profiles insert own" on profiles for insert with check (auth.uid() = user_id);
+create policy "profiles update own" on profiles for update using (auth.uid() = user_id);
+create policy "profiles delete own" on profiles for delete using (auth.uid() = user_id);
+
+drop policy if exists "players select own" on players;
+drop policy if exists "players insert own" on players;
+drop policy if exists "players update own" on players;
+drop policy if exists "players delete own" on players;
+create policy "players select own" on players for select using (auth.uid() = user_id);
+create policy "players insert own" on players for insert with check (auth.uid() = user_id);
+create policy "players update own" on players for update using (auth.uid() = user_id);
+create policy "players delete own" on players for delete using (auth.uid() = user_id);
+
+drop policy if exists "sessions select own" on sessions;
+drop policy if exists "sessions insert own" on sessions;
+drop policy if exists "sessions update own" on sessions;
+drop policy if exists "sessions delete own" on sessions;
+create policy "sessions select own" on sessions for select using (auth.uid() = user_id);
+create policy "sessions insert own" on sessions for insert with check (auth.uid() = user_id);
+create policy "sessions update own" on sessions for update using (auth.uid() = user_id);
+create policy "sessions delete own" on sessions for delete using (auth.uid() = user_id);
+
+drop policy if exists "attendance select own" on attendance;
+drop policy if exists "attendance insert own" on attendance;
+drop policy if exists "attendance update own" on attendance;
+drop policy if exists "attendance delete own" on attendance;
+create policy "attendance select own" on attendance for select using (auth.uid() = user_id);
+create policy "attendance insert own" on attendance for insert with check (auth.uid() = user_id);
+create policy "attendance update own" on attendance for update using (auth.uid() = user_id);
+create policy "attendance delete own" on attendance for delete using (auth.uid() = user_id);
+
+drop policy if exists "ratings select own" on player_ratings;
+drop policy if exists "ratings insert own" on player_ratings;
+drop policy if exists "ratings update own" on player_ratings;
+drop policy if exists "ratings delete own" on player_ratings;
+create policy "ratings select own" on player_ratings for select using (auth.uid() = user_id);
+create policy "ratings insert own" on player_ratings for insert with check (auth.uid() = user_id);
+create policy "ratings update own" on player_ratings for update using (auth.uid() = user_id);
+create policy "ratings delete own" on player_ratings for delete using (auth.uid() = user_id);
+
+drop policy if exists "match reports select own" on match_reports;
+drop policy if exists "match reports insert own" on match_reports;
+drop policy if exists "match reports update own" on match_reports;
+drop policy if exists "match reports delete own" on match_reports;
+create policy "match reports select own" on match_reports for select using (auth.uid() = user_id);
+create policy "match reports insert own" on match_reports for insert with check (auth.uid() = user_id);
+create policy "match reports update own" on match_reports for update using (auth.uid() = user_id);
+create policy "match reports delete own" on match_reports for delete using (auth.uid() = user_id);
