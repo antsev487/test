@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Coach Toolkit</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -90,7 +90,9 @@
         <section id="matchday" class="panel card">
           <p class="eyebrow">Match Day Lineup</p><h3>Build starting 11 and bench</h3>
           <div class="grid three"><label>Opponent<input id="lineupOpponent" placeholder="Opposition"></label><label>Date<input id="lineupDate" type="date"></label><label>Formation<select id="formationSelect"></select></label></div>
-          <div class="lineup-layout"><div><h4 id="formationTitle">Starting XI</h4><div id="startingPositions" class="lineup-grid"></div></div><div><h4>Bench</h4><div id="benchList" class="bench-list"></div></div></div>
+          <p class="muted small">Pick a formation, then tap a position circle on the pitch to assign a player.</p>
+          <div class="pitch-shell"><div id="pitchDiagram" class="pitch-diagram"></div></div>
+          <div class="bench-panel"><h4>Bench</h4><div id="benchList" class="bench-list"></div></div>
           <label>Lineup notes<textarea id="lineupNotes" placeholder="Captain, set pieces, rotation plan..."></textarea></label>
           <button id="saveLineupBtn">Save Match Day Lineup</button>
           <div class="section-title"><h4>Saved lineups</h4></div><div id="lineupsList" class="list"></div>
@@ -115,9 +117,18 @@
       </section>
     </main>
 
+  <div id="playerPickerModal" class="picker-modal hidden">
+    <div class="picker-card">
+      <p class="eyebrow">Assign player</p>
+      <h3 id="pickerTitle">Select player</h3>
+      <label>Squad player<select id="playerPickerSelect"></select></label>
+      <div class="actions picker-actions"><button id="savePickedPlayerBtn">Assign</button><button id="clearPickedPlayerBtn" class="secondary">Clear</button><button id="closePickerBtn" class="ghost">Cancel</button></div>
+    </div>
+  </div>
+
     <footer>Coach Toolkit MVP</footer>
   </div>
   <script src="config.js"></script>
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
