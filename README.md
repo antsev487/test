@@ -1,54 +1,57 @@
-# Coach Toolkit V3 — Live Match Manager
+# Unique Player Allocation Update
 
-This update adds a new feature tab: **Live Match Manager**.
+This update is built from the rescue version, so it keeps:
 
-## What it does
+- Electric blue / black UI
+- Live Match Manager
+- Match Day Lineup
+- Desktop drag/drop
+- Phone Move / Swap
+- Formation-ordered Starting XI text
+- Responsive laptop/phone layout
 
-- Load a saved Match Day Lineup.
-- Start / pause a match timer.
-- Move to Half Time, Second Half and Full Time.
-- Track live player minutes.
-- Add substitutions.
-- Log goals, assists, yellow cards, red cards and custom events.
-- Save a full live match summary to Supabase.
+## What this update adds/fixes
 
-## Upload to GitHub
+A player can only be allocated once.
 
-Replace these files:
+### Starting XI
+If a player is already selected at one position, they are removed from the player picker for every other position.
 
-```txt
-index.html
-style.css
-script.js
-README.md
-```
+Example:
+- Lucas selected at CB
+- Lucas will not appear as an option for RB, LB, ST, etc.
 
-Do not replace your working `config.js`.
+### Bench
+If a player is selected in the Starting XI, they are removed from all bench dropdowns.
 
-## Supabase upgrade
+If a player is selected on Bench 1, they are removed from Bench 2, Bench 3, etc.
 
-In Supabase SQL Editor, run:
+### Safety check
+Even if the browser has stale data, saving the lineup blocks duplicate starters or duplicate bench players.
 
-```txt
-database-live-match-upgrade.sql
-```
+## Upload instructions
+
+Replace these files in GitHub:
+
+- index.html
+- style.css
+- script.js
+- README.md
+
+Do not replace:
+
+- config.js
+- database files
 
 ## After upload
 
-Open your site with:
+1. Commit changes.
+2. Wait 1-3 minutes.
+3. Open:
+   https://antsev57.github.io/test/?v=unique1
+4. Hard refresh:
+   Command + Shift + R
 
-```txt
-https://antsev57.github.io/test/?v=20
-```
+## No Supabase change
 
-Then hard refresh with Command + Shift + R.
-
-## How to use
-
-1. Create players.
-2. Create and save a Match Day Lineup.
-3. Go to Live Match Manager.
-4. Select that saved lineup.
-5. Start the timer.
-6. Add subs and events.
-7. Save the live match summary.
+This is frontend-only. No SQL required.

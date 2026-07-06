@@ -50,3 +50,30 @@ select:focus {
   border-color: rgba(53,242,255,.28);
   color: var(--accent2);
 }
+
+
+/* Rescue update: responsive fit + drag/drop + mobile tap-to-move/swap */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.wrap{width:min(1180px,calc(100% - 28px));max-width:100%}
+main,.card,.panel,.pitch-shell,.pitch-diagram{max-width:100%}
+.pitch-diagram{min-height:clamp(520px,68vh,740px)}
+.position-node{width:clamp(60px,7vw,82px);min-height:clamp(60px,7vw,82px);touch-action:manipulation}
+.position-node[draggable="true"]{cursor:grab}
+.position-node[draggable="true"]:active{cursor:grabbing}
+.position-node.assigned:after{content:"";position:absolute;inset:-5px;border-radius:999px;border:1px solid rgba(255,255,255,.12);pointer-events:none}
+.position-node span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal}
+.move-mode-notice{margin:12px 0 8px;padding:12px 14px;border:1px solid rgba(53,242,255,.35);border-radius:16px;background:rgba(0,163,255,.12);color:var(--accent2);font-weight:800}
+.position-node.move-source{border-color:#ffd166!important;box-shadow:0 0 28px rgba(255,209,102,.38),0 12px 28px rgba(0,0,0,.35)}
+.position-node.move-target{border-style:dashed;border-color:rgba(53,242,255,.75)!important}
+.position-node.move-target:hover{box-shadow:0 0 24px rgba(53,242,255,.24),0 12px 28px rgba(0,0,0,.35)}
+
+@media (min-width:1100px){.pitch-diagram{min-height:min(70vh,740px)}}
+@media (max-width:700px){.wrap{width:100%;padding:0 10px}.hero{padding:16px 0 20px}h1{font-size:clamp(2.05rem,14vw,4rem)}.lead{font-size:1rem}.card,.panel{padding:16px;border-radius:18px}.tabs{gap:8px}.tab{padding:.75rem .9rem}.pitch-diagram{min-height:calc(100vh - 210px);max-height:640px;border-radius:20px}.position-node{width:58px;min-height:58px;padding:5px}.position-node strong{font-size:.7rem}.position-node span{font-size:.55rem;max-width:48px}.box{height:72px}.center-circle{width:92px;height:92px}.position-node.move-target span{color:var(--accent2)}}
+@media (max-width:390px){.position-node{width:52px;min-height:52px}.position-node span{font-size:.5rem;max-width:43px}}
+
+
+/* Unique allocation note */
+.small-note{
+  margin-top:10px;
+  font-size:.88rem;
+}
