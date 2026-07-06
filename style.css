@@ -77,3 +77,18 @@ main,.card,.panel,.pitch-shell,.pitch-diagram{max-width:100%}
   margin-top:10px;
   font-size:.88rem;
 }
+
+
+/* Build confirmation badge */
+.build-badge{
+  width:min(1180px,calc(100% - 28px));
+  margin:12px auto 0;
+  padding:9px 12px;
+  border:1px solid rgba(53,242,255,.26);
+  border-radius:999px;
+  background:rgba(0,163,255,.10);
+  color:var(--accent2);
+  font-size:.8rem;
+  font-weight:800;
+  text-align:center;
+}

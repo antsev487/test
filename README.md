@@ -1,37 +1,25 @@
-# Unique Player Allocation Update
+# HARD FIX — fetchLiveMatches + Unique Allocation
 
-This update is built from the rescue version, so it keeps:
+This is the stronger fix for:
 
-- Electric blue / black UI
-- Live Match Manager
-- Match Day Lineup
-- Desktop drag/drop
-- Phone Move / Swap
-- Formation-ordered Starting XI text
-- Responsive laptop/phone layout
+fetchLiveMatches is not defined
 
-## What this update adds/fixes
+## Important
 
-A player can only be allocated once.
+This version uses:
 
-### Starting XI
-If a player is already selected at one position, they are removed from the player picker for every other position.
+script.js?v=hardfix2
+style.css?v=hardfix2
 
-Example:
-- Lucas selected at CB
-- Lucas will not appear as an option for RB, LB, ST, etc.
+It also adds a small visible badge near the top of the app:
 
-### Bench
-If a player is selected in the Starting XI, they are removed from all bench dropdowns.
+Build: hardfix2 · Live Match + Unique Allocation
 
-If a player is selected on Bench 1, they are removed from Bench 2, Bench 3, etc.
-
-### Safety check
-Even if the browser has stale data, saving the lineup blocks duplicate starters or duplicate bench players.
+If you do not see that badge, GitHub Pages is still serving old files.
 
 ## Upload instructions
 
-Replace these files in GitHub:
+Replace these files in GitHub root:
 
 - index.html
 - style.css
@@ -46,12 +34,30 @@ Do not replace:
 ## After upload
 
 1. Commit changes.
-2. Wait 1-3 minutes.
+2. Wait 2-3 minutes.
 3. Open:
-   https://antsev57.github.io/test/?v=unique1
+   https://antsev57.github.io/test/?v=hardfix2
 4. Hard refresh:
    Command + Shift + R
 
-## No Supabase change
+## Check script is live
 
-This is frontend-only. No SQL required.
+Open this exact URL:
+
+https://antsev57.github.io/test/script.js?v=hardfix2
+
+Search for:
+
+window.fetchLiveMatches
+
+If you do not see it, the new script.js was not uploaded to the correct place.
+
+## Included features
+
+- Electric blue / black UI
+- Live Match Manager
+- Desktop drag/drop
+- Phone Move / Swap
+- Formation-ordered Starting XI
+- Responsive layout
+- Unique player allocation
