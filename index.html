@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Coach Toolkit</title>
-  <link rel="stylesheet" href="style.css?v=tapswap1" />
+  <link rel="stylesheet" href="style.css?v=20" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -52,6 +52,7 @@
           <button class="tab" data-tab="sessions">Sessions</button>
           <button class="tab" data-tab="attendance">Training Attendance</button>
           <button class="tab" data-tab="matchday">Match Day Lineup</button>
+          <button class="tab" data-tab="live">Live Match Manager</button>
           <button class="tab" data-tab="ratings">Ratings</button>
           <button class="tab" data-tab="reports">Match Reports</button>
         </nav>
@@ -91,12 +92,69 @@
           <p class="eyebrow">Match Day Lineup</p><h3>Build starting 11 and bench</h3>
           <div class="grid three"><label>Opponent<input id="lineupOpponent" placeholder="Opposition"></label><label>Date<input id="lineupDate" type="date"></label><label>Formation<select id="formationSelect"></select></label></div>
           <p class="muted small">Pick a formation, then tap a position circle on the pitch to assign a player.</p>
-          <p id="moveModeNotice" class="move-mode-notice hidden">Move mode: tap the new position to move/swap the player.</p>
           <div class="pitch-shell"><div id="pitchDiagram" class="pitch-diagram"></div></div>
           <div class="bench-panel"><h4>Bench</h4><div id="benchList" class="bench-list"></div></div>
           <label>Lineup notes<textarea id="lineupNotes" placeholder="Captain, set pieces, rotation plan..."></textarea></label>
           <button id="saveLineupBtn">Save Match Day Lineup</button>
           <div class="section-title"><h4>Saved lineups</h4></div><div id="lineupsList" class="list"></div>
+        </section>
+
+
+
+        <section id="live" class="panel card">
+          <p class="eyebrow">Live Match Manager</p><h3>Track minutes, subs and events live</h3>
+          <p class="muted small">Load a saved Match Day Lineup, start the timer, record substitutions and log key match events.</p>
+
+          <div class="grid three">
+            <label>Saved lineup<select id="liveLineupSelect"></select></label>
+            <label>Score for<input id="liveScoreFor" type="number" min="0" value="0"></label>
+            <label>Score against<input id="liveScoreAgainst" type="number" min="0" value="0"></label>
+          </div>
+          <button id="loadLiveLineupBtn">Load Lineup</button>
+
+          <div class="live-scoreboard">
+            <div>
+              <p class="eyebrow">Match clock</p>
+              <h2 id="liveClock">00:00</h2>
+              <p id="liveStatus" class="muted">No live match loaded</p>
+            </div>
+            <div class="live-controls">
+              <button id="startLiveBtn">Start</button>
+              <button id="pauseLiveBtn" class="secondary">Pause</button>
+              <button id="halfTimeBtn" class="secondary">Half Time</button>
+              <button id="secondHalfBtn" class="secondary">Second Half</button>
+              <button id="fullTimeBtn" class="danger">Full Time</button>
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div class="live-box">
+              <p class="eyebrow">Substitution</p><h4>Add substitution</h4>
+              <div class="grid two"><label>Minute<input id="subMinute" type="number" min="0" placeholder="Auto"></label><label>Player off<select id="subOffSelect"></select></label></div>
+              <label>Player on<select id="subOnSelect"></select></label>
+              <button id="addSubBtn">Add Substitution</button>
+            </div>
+            <div class="live-box">
+              <p class="eyebrow">Events</p><h4>Log event</h4>
+              <div class="grid two"><label>Minute<input id="eventMinute" type="number" min="0" placeholder="Auto"></label><label>Type<select id="eventType"><option>Goal</option><option>Assist</option><option>Yellow Card</option><option>Red Card</option><option>Custom Event</option></select></label></div>
+              <label>Player<select id="eventPlayerSelect"></select></label>
+              <label>Note<input id="eventNote" placeholder="Optional note"></label>
+              <button id="addEventBtn">Add Event</button>
+            </div>
+          </div>
+
+          <div class="section-title"><h4>Live player minutes</h4></div>
+          <div id="livePlayersList" class="list"></div>
+
+          <div class="grid two">
+            <div><div class="section-title"><h4>Sub history</h4></div><div id="liveSubsList" class="list"></div></div>
+            <div><div class="section-title"><h4>Event history</h4></div><div id="liveEventsList" class="list"></div></div>
+          </div>
+
+          <button id="saveLiveMatchBtn">Save Live Match Summary</button>
+
+          <div class="section-title"><h4>Saved live match summaries</h4></div>
+          <div id="liveMatchesList" class="list"></div>
         </section>
 
         <section id="ratings" class="panel card">
@@ -123,13 +181,13 @@
       <p class="eyebrow">Assign player</p>
       <h3 id="pickerTitle">Select player</h3>
       <label>Squad player<select id="playerPickerSelect"></select></label>
-      <div class="actions picker-actions"><button id="savePickedPlayerBtn">Assign</button><button id="movePickedPlayerBtn" class="secondary">Move / Swap</button><button id="clearPickedPlayerBtn" class="secondary">Clear</button><button id="closePickerBtn" class="ghost">Cancel</button></div>
+      <div class="actions picker-actions"><button id="savePickedPlayerBtn">Assign</button><button id="clearPickedPlayerBtn" class="secondary">Clear</button><button id="closePickerBtn" class="ghost">Cancel</button></div>
     </div>
   </div>
 
     <footer>Coach Toolkit MVP</footer>
   </div>
   <script src="config.js"></script>
-  <script src="script.js?v=tapswap1"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>
