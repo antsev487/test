@@ -1,17 +1,21 @@
-# Coach Toolkit V4 Production Polish
+# Coach Toolkit V4 Hover Fix
 
-This update removes the dev/test feel and makes the logged-in dashboard cleaner.
+This fixes the issue where pitch position circles move when you hover over them.
 
-## What changed
+## What caused it
 
-- Removed visible build/debug badge
-- Removed technical text like "V4 clean rebuild"
-- Cleaner dashboard hero section
-- Better dashboard cards
-- Improved tab container
-- More professional "quick workflow" panel
-- Keeps Supabase config fix
-- Keeps all V4 features
+The app has a normal button hover effect:
+
+button:hover { transform: translateY(-1px); }
+
+That is fine for normal buttons, but the pitch circles are also buttons. The hover effect was overriding their positioning transform.
+
+## What this fixes
+
+- ST / GK / CB / etc. no longer move when the cursor hovers over them.
+- Pitch circles stay locked in place.
+- Keeps production polish UI.
+- Keeps all V4 features.
 
 ## Upload instructions
 
@@ -32,7 +36,7 @@ Do not replace:
 
 Open:
 
-https://antsev57.github.io/test/?v=prod1
+https://antsev57.github.io/test/?v=hoverfix1
 
 Hard refresh:
 
@@ -40,4 +44,4 @@ Command + Shift + R
 
 ## Supabase
 
-No new SQL required if you already ran database-v4-upgrade.sql.
+No SQL change needed.

@@ -584,3 +584,22 @@ body{
     min-height:92px;
   }
 }
+
+
+/* Hover fix: keep pitch position circles locked in place */
+.pitch .node,
+.pitch .node:hover,
+.pitch .node:focus,
+.pitch .node:active{
+  transform:translate(-50%,-50%)!important;
+}
+
+.pitch .node:hover{
+  border-color:rgba(53,242,255,.70);
+  box-shadow:0 0 28px rgba(0,163,255,.24),0 12px 28px rgba(0,0,0,.35);
+}
+
+.pitch .node.assigned:hover{
+  border-color:rgba(53,242,255,.95);
+  box-shadow:0 0 34px rgba(0,163,255,.38),0 12px 28px rgba(0,0,0,.35);
+}
