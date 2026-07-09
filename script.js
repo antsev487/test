@@ -217,6 +217,10 @@
     if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
     if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
     if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("bottomLoginBtn")) $("bottomLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
     $("logoutBtn").addEventListener("click", logout);
     $("saveProfileBtn").addEventListener("click", saveProfile);
     $("addPlayerBtn").addEventListener("click", addPlayer);

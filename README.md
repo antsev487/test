@@ -1,21 +1,17 @@
-# Coach Toolkit V4 Homepage Layout Polish
+# Coach Toolkit V4 Market Ready Homepage — Two Screenshot Version
 
-This update improves the public home page layout.
+This version uses only the two screenshots you provided:
 
-## What changed
+- Match Day Lineup screenshot
+- Dashboard / Coach Command Centre screenshot
 
-- Fixes top-right Login button being clipped/off-screen
-- Makes the hero text more balanced
-- Moves login panel higher and more connected to the hero
-- Integrates feature cards better
-- Keeps homepage Login / Create Account buttons
-- Keeps hover fix
-- Keeps production polish UI
-- Keeps all V4 features
+No fake product image.
+No previous login screenshot.
+No extra product mock image.
 
 ## Upload instructions
 
-Replace these files in GitHub root:
+Replace these files/folders in GitHub root:
 
 - index.html
 - style.css
@@ -23,6 +19,7 @@ Replace these files in GitHub root:
 - README.md
 - logo.svg
 - .nojekyll
+- assets/
 
 Do not replace:
 
@@ -32,7 +29,7 @@ Do not replace:
 
 Open:
 
-https://antsev57.github.io/test/?v=homepolish1
+https://antsev57.github.io/test/?v=market2
 
 Hard refresh:
 
@@ -40,4 +37,4 @@ Command + Shift + R
 
 ## Supabase
 
-No SQL change required.
+No SQL change required if you already ran database-v4-upgrade.sql.

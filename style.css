@@ -859,3 +859,355 @@ body{
     grid-template-columns:1fr 1fr;
   }
 }
+
+
+/* Market-ready public landing page */
+body{
+  background:
+    radial-gradient(circle at 16% 14%,rgba(0,163,255,.22),transparent 30rem),
+    radial-gradient(circle at 86% 10%,rgba(53,242,255,.12),transparent 26rem),
+    linear-gradient(180deg,#020713 0%,#030711 46%,#01030a 100%);
+}
+
+.topbar{
+  border:1px solid rgba(87,179,255,.10);
+  border-radius:28px;
+  margin:10px 0 22px!important;
+  background:rgba(2,7,17,.78)!important;
+  box-shadow:0 20px 70px rgba(0,0,0,.22);
+}
+
+.market-home{
+  display:grid;
+  gap:34px;
+  padding-bottom:44px;
+}
+
+.market-hero{
+  min-height:calc(100vh - 148px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(380px,440px);
+  gap:64px;
+  align-items:center;
+  padding:36px 0 20px;
+}
+
+.market-copy{
+  max-width:820px;
+}
+
+.market-copy h1{
+  font-size:clamp(3.6rem,6.2vw,7.2rem);
+  line-height:.89;
+  letter-spacing:-.078em;
+  margin:0 0 22px;
+}
+
+.market-subtitle{
+  max-width:780px;
+  color:#dceaff;
+  font-size:1.12rem;
+  line-height:1.55;
+  margin-bottom:0;
+}
+
+.market-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:28px 0 20px;
+}
+
+.market-actions button{
+  min-height:52px;
+  padding-left:1.45rem;
+  padding-right:1.45rem;
+}
+
+.trust-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.trust-row span{
+  display:inline-flex;
+  align-items:center;
+  min-height:36px;
+  border:1px solid rgba(53,242,255,.20);
+  background:rgba(0,163,255,.075);
+  color:#dff8ff;
+  border-radius:999px;
+  padding:7px 12px;
+  font-weight:900;
+  font-size:.84rem;
+}
+
+.market-login-card{
+  align-self:center;
+  justify-self:end;
+  width:100%;
+  max-width:440px;
+  border-radius:32px;
+  padding:30px;
+  background:
+    radial-gradient(circle at top left,rgba(0,163,255,.16),transparent 18rem),
+    linear-gradient(180deg,rgba(10,30,65,.98),rgba(5,14,32,.94));
+}
+
+.login-header{
+  margin-bottom:16px;
+}
+
+.login-kicker{
+  display:block;
+  color:var(--accent2);
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.market-login-card input{
+  min-height:56px;
+  border-radius:18px;
+  background:#eaf2ff;
+  color:#07142b;
+  font-weight:800;
+}
+
+.product-preview-section{
+  display:grid;
+  gap:22px;
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  gap:22px;
+  align-items:flex-end;
+}
+
+.section-heading h2{
+  max-width:860px;
+  font-size:clamp(2rem,3.5vw,3.4rem);
+  line-height:1;
+  letter-spacing:-.055em;
+  margin:0;
+}
+
+.feature-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.feature-strip article{
+  border:1px solid rgba(53,242,255,.17);
+  border-radius:24px;
+  padding:18px;
+  background:linear-gradient(180deg,rgba(0,163,255,.10),rgba(255,255,255,.025));
+  min-height:130px;
+}
+
+.feature-strip strong{
+  display:block;
+  margin-bottom:8px;
+  color:#fff;
+  font-size:1.05rem;
+}
+
+.feature-strip span{
+  color:#a9bcdf;
+  font-weight:800;
+  line-height:1.38;
+}
+
+.screenshot-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  align-items:start;
+}
+
+.screenshot-card{
+  margin:0;
+  border:1px solid rgba(87,179,255,.18);
+  border-radius:30px;
+  overflow:hidden;
+  background:rgba(7,20,43,.74);
+  box-shadow:0 26px 90px rgba(0,0,0,.32);
+}
+
+.screenshot-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  object-position:top center;
+  border-bottom:1px solid rgba(87,179,255,.14);
+}
+
+.screenshot-card.large img{
+  aspect-ratio:16/11;
+}
+
+.screenshot-card figcaption{
+  display:grid;
+  gap:4px;
+  padding:18px;
+}
+
+.screenshot-card strong{
+  font-size:1.1rem;
+}
+
+.screenshot-card span{
+  color:#a9bcdf;
+  font-weight:800;
+}
+
+.market-bottom-cta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  border:1px solid rgba(53,242,255,.18);
+  border-radius:32px;
+  padding:28px;
+  background:
+    radial-gradient(circle at left,rgba(0,163,255,.18),transparent 24rem),
+    linear-gradient(135deg,rgba(7,22,48,.92),rgba(3,10,25,.84));
+}
+
+.market-bottom-cta h2{
+  font-size:clamp(1.8rem,3vw,3rem);
+  line-height:1;
+  margin:0;
+  letter-spacing:-.045em;
+}
+
+.market-bottom-cta button{
+  min-width:140px;
+  min-height:52px;
+}
+
+.auth-card{
+  display:none!important;
+}
+
+.home-feature-grid{
+  display:none!important;
+}
+
+.hero-pills,
+.hero-cta-row{
+  display:none!important;
+}
+
+@media (max-width:980px){
+  .market-hero{
+    min-height:auto;
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:28px 0 10px;
+  }
+
+  .market-copy h1{
+    font-size:clamp(3rem,13vw,4.8rem);
+  }
+
+  .market-login-card{
+    max-width:none;
+    justify-self:stretch;
+    padding:22px;
+  }
+
+  .feature-strip{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .screenshot-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-heading{
+    display:block;
+  }
+
+  .market-bottom-cta{
+    align-items:stretch;
+    flex-direction:column;
+  }
+}
+
+@media (max-width:560px){
+  .topbar{
+    border-radius:22px;
+    margin-top:6px!important;
+  }
+
+  .market-copy h1{
+    font-size:clamp(2.65rem,15vw,3.75rem);
+  }
+
+  .market-subtitle{
+    font-size:.98rem;
+  }
+
+  .market-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .trust-row span{
+    font-size:.76rem;
+  }
+
+  .feature-strip{
+    grid-template-columns:1fr;
+  }
+
+  .market-login-card input{
+    min-height:50px;
+  }
+
+  .screenshot-card,
+  .market-bottom-cta{
+    border-radius:22px;
+  }
+
+  .product-preview-section{
+    gap:18px;
+  }
+}
+
+
+/* Market page using only the two provided product screenshots */
+.screenshot-grid.two-only{
+  grid-template-columns:1fr 1fr;
+  align-items:start;
+}
+
+.screenshot-grid.two-only .screenshot-card img{
+  aspect-ratio:16/10;
+  object-fit:cover;
+  object-position:top center;
+}
+
+.screenshot-grid.two-only .screenshot-card:first-child img{
+  object-position:top center;
+}
+
+.screenshot-grid.two-only .screenshot-card{
+  min-width:0;
+}
+
+@media (max-width:980px){
+  .screenshot-grid.two-only{
+    grid-template-columns:1fr;
+  }
+}
