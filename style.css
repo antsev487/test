@@ -72,13 +72,6 @@ main,.card,.panel,.pitch-shell,.pitch-diagram{max-width:100%}
 @media (max-width:390px){.position-node{width:52px;min-height:52px}.position-node span{font-size:.5rem;max-width:43px}}
 
 
-/* Unique allocation note */
-.small-note{
-  margin-top:10px;
-  font-size:.88rem;
-}
-
-
 /* Build confirmation badge */
 .build-badge{
   width:min(1180px,calc(100% - 28px));
@@ -91,4 +84,8 @@ main,.card,.panel,.pitch-shell,.pitch-diagram{max-width:100%}
   font-size:.8rem;
   font-weight:800;
   text-align:center;
+}
+.small-note{
+  margin-top:10px;
+  font-size:.88rem;
 }

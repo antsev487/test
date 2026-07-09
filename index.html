@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Coach Toolkit</title>
-  <link rel="stylesheet" href="style.css?v=hardfix2" />
+  <link rel="stylesheet" href="style.css?v=shim1" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -93,7 +93,7 @@
           <div class="grid three"><label>Opponent<input id="lineupOpponent" placeholder="Opposition"></label><label>Date<input id="lineupDate" type="date"></label><label>Formation<select id="formationSelect"></select></label></div>
           <p class="muted small">Pick a formation, then tap a position circle on the pitch to assign a player.</p>
           <p id="moveModeNotice" class="move-mode-notice hidden">Move mode: tap the new position to move/swap the player.</p><div class="pitch-shell"><div id="pitchDiagram" class="pitch-diagram"></div>
-            <p id="uniqueAllocationNote" class="muted small-note">Once a player is selected, they are removed from the other position and bench dropdowns.</p></div>
+            <p id="uniqueAllocationNote" class="muted small-note">Once a player is selected, they are removed from other position and bench dropdowns.</p></div>
           <div class="bench-panel"><h4>Bench</h4><div id="benchList" class="bench-list"></div></div>
           <label>Lineup notes<textarea id="lineupNotes" placeholder="Captain, set pieces, rotation plan..."></textarea></label>
           <button id="saveLineupBtn">Save Match Day Lineup</button>
@@ -189,6 +189,43 @@
     <footer>Coach Toolkit MVP</footer>
   </div>
   <script src="config.js"></script>
-  <script src="script.js?v=hardfix2"></script>
+  
+<script>
+/* Emergency global helpers — must exist before script.js runs */
+window.renderLiveLineupOptions = window.renderLiveLineupOptions || function(){
+  try {
+    var el = document.getElementById('liveLineupSelect');
+    if (!el) return;
+
+    var current = el.value || '';
+    var sourceLineups = window.lineups || [];
+
+    if (!Array.isArray(sourceLineups) || sourceLineups.length === 0) {
+      el.innerHTML = '<option value="">No saved lineups yet</option>';
+      return;
+    }
+
+    el.innerHTML = '<option value="">Select saved lineup</option>' + sourceLineups.map(function(l){
+      var label = (l.match_date || 'No date') + ' — ' + (l.formation || 'Formation') + ' vs ' + (l.opponent || 'Opponent');
+      var selected = l.id === current ? ' selected' : '';
+      return '<option value="' + l.id + '"' + selected + '>' + label.replace(/[&<>"']/g, function(m){
+        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[m];
+      }) + '</option>';
+    }).join('');
+
+    if (current) el.value = current;
+  } catch (e) {
+    console.warn('renderLiveLineupOptions shim warning:', e);
+  }
+};
+
+function renderLiveLineupOptions(){
+  return window.renderLiveLineupOptions();
+}
+
+window.fetchLiveMatches = window.fetchLiveMatches || async function(){ return; };
+</script>
+
+<script src="script.js?v=shim1"></script>
 </body>
 </html>
