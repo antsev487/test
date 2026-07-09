@@ -1,28 +1,68 @@
-# Emergency Shim Fix — renderLiveLineupOptions
+# Coach Toolkit V4 Clean Rebuild
 
-This fixes: renderLiveLineupOptions is not defined
+This is a clean rebuild, not a patch.
 
-## Upload
+## What is included
 
-Replace these files in the GitHub root:
+- Electric blue / black UI
+- Cleaner app structure
+- Login / signup
+- Team profile
+- Player database
+- Training session planner
+- Attendance tracking
+- Player ratings
+- Match Day Lineup pitch view
+- Formation-ordered Starting XI text
+- Unique player allocation
+- Desktop drag/drop on pitch
+- Phone tap-to-move / swap
+- Live Match Manager
+- Substitution and event logging
+- Saved live match summaries
+- Match reports
+- Responsive laptop / phone layout
+- Logo SVG
+
+## Upload instructions
+
+Replace these files in your GitHub root:
 
 - index.html
 - style.css
 - script.js
 - README.md
+- logo.svg
+- .nojekyll
 
-Do not replace config.js.
+Do not replace:
 
-## Test
+- config.js
 
-Open:
+Your existing config.js should stay exactly as-is.
 
-https://antsev57.github.io/test/?v=shim1
+## Supabase
 
-Hard refresh with Command + Shift + R.
+Run this once in Supabase > SQL Editor > New Query:
+
+database-v4-upgrade.sql
+
+It is safe to run more than once.
+
+## Test URL
+
+After committing to GitHub, wait 2-3 minutes and open:
+
+https://antsev57.github.io/test/?v=v4clean1
+
+Then hard refresh:
+
+Command + Shift + R
+
+## Build check
 
 You should see:
 
-Build: shim1 · Emergency Live Lineup Fix
+Build: v4clean1 · stable rebuild
 
-If not, the new index.html is not live.
+If you do not see that, GitHub Pages is still serving the old files.

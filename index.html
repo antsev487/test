@@ -2,230 +2,361 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Coach Toolkit</title>
-  <link rel="stylesheet" href="style.css?v=shim1" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Coach Toolkit V4</title>
+  <link rel="icon" href="logo.svg" />
+  <link rel="stylesheet" href="style.css?v=v4clean1" />
 </head>
 <body>
-  <div class="wrap">
-    <header class="hero">
-      <nav class="top">
-        <div class="brand"><div class="logo">CT</div><div><b>Coach Toolkit</b><span>Squad • Training • Match Day</span></div></div>
-        <button id="logoutBtn" class="ghost hidden">Logout</button>
-      </nav>
-      <p class="eyebrow">Football coaching tools</p>
-      <h1>Manage your squad, training and match day.</h1>
-      <p class="lead">Track players, training attendance, match lineups, ratings and reports from one simple coach workspace.</p>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo.svg" alt="Coach Toolkit logo" />
+        <div>
+          <strong>Coach Toolkit</strong>
+          <span>V4 Clean Build</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span id="userEmail" class="user-email"></span>
+        <button id="logoutBtn" class="ghost hidden" type="button">Logout</button>
+      </div>
     </header>
 
-    <main>
-      <section id="setupWarning" class="card warning hidden">
-        <h2>Supabase not configured</h2>
-        <p>Paste your Supabase URL and anonymous public key into <b>config.js</b>.</p>
-      </section>
+    <div id="buildBadge" class="build-badge">Build: v4clean1 · stable rebuild</div>
 
-      <section id="authView" class="card auth">
-        <h2>Coach login</h2>
-        <p class="muted">Create an account or log in.</p>
-        <div class="grid two">
-          <label>Email<input id="email" type="email" placeholder="coach@email.com"></label>
-          <label>Password<input id="password" type="password" placeholder="Minimum 6 characters"></label>
+    <section id="authView" class="auth-card">
+      <div class="auth-copy">
+        <p class="eyebrow">Football coaching workspace</p>
+        <h1>Plan. Track. Manage match day.</h1>
+        <p>Players, attendance, ratings, lineups, live substitutions and reports in one simple coach dashboard.</p>
+      </div>
+
+      <div class="card auth-panel">
+        <h2>Coach Login</h2>
+        <label>Email
+          <input id="authEmail" type="email" autocomplete="email" placeholder="coach@email.com" />
+        </label>
+        <label>Password
+          <input id="authPassword" type="password" autocomplete="current-password" placeholder="Password" />
+        </label>
+        <div class="button-row">
+          <button id="loginBtn" type="button">Login</button>
+          <button id="signupBtn" type="button" class="secondary">Create Account</button>
         </div>
-        <div class="actions"><button id="signUpBtn">Create account</button><button id="loginBtn" class="secondary">Login</button></div>
-        <p class="muted small">Forgot password? For MVP testing, reset/delete the user in Supabase Authentication.</p>
-        <p id="authMessage" class="message"></p>
+        <p id="authMsg" class="message"></p>
+      </div>
+    </section>
+
+    <main id="appView" class="hidden">
+      <nav class="tabs" aria-label="Coach Toolkit sections">
+        <button class="tab active" data-tab="dashboard" type="button">Dashboard</button>
+        <button class="tab" data-tab="players" type="button">Players</button>
+        <button class="tab" data-tab="training" type="button">Training</button>
+        <button class="tab" data-tab="ratings" type="button">Ratings</button>
+        <button class="tab" data-tab="lineup" type="button">Lineup</button>
+        <button class="tab" data-tab="live" type="button">Live Match</button>
+        <button class="tab" data-tab="reports" type="button">Reports</button>
+      </nav>
+
+      <section id="dashboard" class="view active">
+        <div class="grid two">
+          <div class="card">
+            <h2>Team Profile</h2>
+            <div class="form-grid">
+              <label>Coach name
+                <input id="coachName" placeholder="Coach name" />
+              </label>
+              <label>Club
+                <input id="clubName" placeholder="Club" />
+              </label>
+              <label>Age group / team
+                <input id="ageGroup" placeholder="e.g. U18 Boys" />
+              </label>
+            </div>
+            <button id="saveProfileBtn" type="button">Save Profile</button>
+          </div>
+
+          <div class="card">
+            <h2>Snapshot</h2>
+            <div class="stats-grid">
+              <div><strong id="countPlayers">0</strong><span>Players</span></div>
+              <div><strong id="countSessions">0</strong><span>Sessions</span></div>
+              <div><strong id="countLineups">0</strong><span>Lineups</span></div>
+              <div><strong id="countLive">0</strong><span>Live matches</span></div>
+            </div>
+            <p class="muted">V4 is a clean rebuild: fewer moving parts, consistent functions, and safer rendering.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="appView" class="hidden">
-        <div class="workspace-head"><div><p class="eyebrow">Workspace</p><h2 id="welcomeTitle">Welcome coach</h2></div><button id="refreshBtn" class="secondary">Refresh</button></div>
-        <section class="stats"><div><b id="statPlayers">0</b><span>Players</span></div><div><b id="statTraining">0</b><span>Training sessions</span></div><div><b id="statLineups">0</b><span>Lineups</span></div><div><b id="statReports">0</b><span>Reports</span></div></section>
+      <section id="players" class="view">
+        <div class="grid two">
+          <div class="card">
+            <h2>Add Player</h2>
+            <div class="form-grid">
+              <label>First name
+                <input id="playerFirst" placeholder="First name" />
+              </label>
+              <label>Last name
+                <input id="playerLast" placeholder="Last name" />
+              </label>
+              <label>Positions
+                <select id="playerPositions" multiple size="8"></select>
+              </label>
+            </div>
+            <button id="addPlayerBtn" type="button">Add Player</button>
+            <p class="hint">Hold Command on Mac to select multiple positions.</p>
+          </div>
 
-        <section class="card">
-          <p class="eyebrow">Coach profile</p><h3>Your details</h3>
-          <div class="grid three"><label>Name<input id="coachName" placeholder="Antony"></label><label>Club<input id="coachClub" placeholder="Club name"></label><label>Age group<input id="coachAgeGroup" placeholder="U18 / First Team"></label></div>
-          <button id="saveProfileBtn">Save profile</button>
-        </section>
+          <div class="card">
+            <h2>Squad</h2>
+            <div id="playersList" class="list"></div>
+          </div>
+        </div>
+      </section>
 
-        <nav class="tabs">
-          <button class="tab active" data-tab="squad">Squad</button>
-          <button class="tab" data-tab="sessions">Sessions</button>
-          <button class="tab" data-tab="attendance">Training Attendance</button>
-          <button class="tab" data-tab="matchday">Match Day Lineup</button>
-          <button class="tab" data-tab="live">Live Match Manager</button>
-          <button class="tab" data-tab="ratings">Ratings</button>
-          <button class="tab" data-tab="reports">Match Reports</button>
-        </nav>
+      <section id="training" class="view">
+        <div class="grid two">
+          <div class="card">
+            <h2>Create Training Session</h2>
+            <div class="form-grid">
+              <label>Session name
+                <input id="sessionTitle" placeholder="Monday Session" />
+              </label>
+              <label>Date
+                <input id="sessionDate" type="date" />
+              </label>
+              <label>Duration
+                <input id="sessionDuration" placeholder="75 min" />
+              </label>
+              <label>Objective
+                <textarea id="sessionObjective" placeholder="Main objective"></textarea>
+              </label>
+              <label>Setup
+                <textarea id="sessionSetup" placeholder="Area, numbers, equipment"></textarea>
+              </label>
+              <label>Coach points
+                <textarea id="sessionCoachPoints" placeholder="Key coaching points"></textarea>
+              </label>
+            </div>
+            <button id="saveSessionBtn" type="button">Save Session</button>
+          </div>
 
-        <section id="squad" class="panel card active-panel">
-          <p class="eyebrow">Squad</p><h3>Players</h3>
-          <div class="grid two"><label>First name<input id="playerFirst" placeholder="Leo"></label><label>Surname<input id="playerLast" placeholder="Smith"></label></div>
-          <label>Positions <span class="hint">Select multiple positions.</span>
-            <select id="playerPositions" multiple size="6">
-              <option>GK</option><option>RB</option><option>RCB</option><option>CB</option><option>LCB</option><option>LB</option><option>RWB</option><option>LWB</option><option>DM</option><option>CM</option><option>AM</option><option>RW</option><option>LW</option><option>ST</option>
-            </select>
-          </label>
-          <button id="addPlayerBtn">Add player</button>
-          <div class="section-title"><h4>Saved players</h4><p class="muted small">Tap a player to view attendance, games played, games started and rating.</p></div>
-          <div id="playersList" class="list"></div>
-        </section>
+          <div class="card">
+            <h2>Attendance</h2>
+            <div class="form-grid">
+              <label>Session
+                <select id="attendanceSession"></select>
+              </label>
+              <label>Date
+                <input id="attendanceDate" type="date" />
+              </label>
+            </div>
+            <div id="attendanceForm" class="check-list"></div>
+            <button id="saveAttendanceBtn" type="button">Save Attendance</button>
+          </div>
+        </div>
 
-        <section id="sessions" class="panel card">
-          <p class="eyebrow">Session Planner</p><h3>Create session</h3>
-          <div class="grid three"><label>Title<input id="sessionTitle" placeholder="Build-up through thirds"></label><label>Date<input id="sessionDate" type="date"></label><label>Duration<input id="sessionDuration" placeholder="75 mins"></label></div>
-          <div class="grid two"><label>Objective<textarea id="sessionObjective"></textarea></label><label>Setup<textarea id="sessionSetup"></textarea></label></div>
-          <label>Coach points<textarea id="sessionCoachPoints"></textarea></label>
-          <button id="saveSessionBtn">Save session</button>
-          <div class="section-title"><h4>Saved sessions</h4></div><div id="sessionsList" class="list"></div>
-        </section>
-
-        <section id="attendance" class="panel card">
-          <p class="eyebrow">Training Attendance</p><h3>Record a training session</h3>
-          <div class="grid two"><label>Session name<input id="attendanceNote" placeholder="Monday Session"></label><label>Date<input id="attendanceDate" type="date"></label></div>
-          <div id="attendanceList" class="list"></div>
-          <button id="saveAttendanceBtn">Save training attendance</button>
-          <div class="section-title"><h4>Training sessions</h4><p class="muted small">Tap a session to see present and absent players.</p></div>
+        <div class="card">
+          <h2>Training History</h2>
+          <div id="sessionsList" class="list"></div>
+          <h3>Attendance History</h3>
           <div id="attendanceHistory" class="list"></div>
-        </section>
+        </div>
+      </section>
 
-        <section id="matchday" class="panel card">
-          <p class="eyebrow">Match Day Lineup</p><h3>Build starting 11 and bench</h3>
-          <div class="grid three"><label>Opponent<input id="lineupOpponent" placeholder="Opposition"></label><label>Date<input id="lineupDate" type="date"></label><label>Formation<select id="formationSelect"></select></label></div>
-          <p class="muted small">Pick a formation, then tap a position circle on the pitch to assign a player.</p>
-          <p id="moveModeNotice" class="move-mode-notice hidden">Move mode: tap the new position to move/swap the player.</p><div class="pitch-shell"><div id="pitchDiagram" class="pitch-diagram"></div>
-            <p id="uniqueAllocationNote" class="muted small-note">Once a player is selected, they are removed from other position and bench dropdowns.</p></div>
-          <div class="bench-panel"><h4>Bench</h4><div id="benchList" class="bench-list"></div></div>
-          <label>Lineup notes<textarea id="lineupNotes" placeholder="Captain, set pieces, rotation plan..."></textarea></label>
-          <button id="saveLineupBtn">Save Match Day Lineup</button>
-          <div class="section-title"><h4>Saved lineups</h4></div><div id="lineupsList" class="list"></div>
-        </section>
-
-
-
-        <section id="live" class="panel card">
-          <p class="eyebrow">Live Match Manager</p><h3>Track minutes, subs and events live</h3>
-          <p class="muted small">Load a saved Match Day Lineup, start the timer, record substitutions and log key match events.</p>
-
-          <div class="grid three">
-            <label>Saved lineup<select id="liveLineupSelect"></select></label>
-            <label>Score for<input id="liveScoreFor" type="number" min="0" value="0"></label>
-            <label>Score against<input id="liveScoreAgainst" type="number" min="0" value="0"></label>
+      <section id="ratings" class="view">
+        <div class="card">
+          <h2>Player Ratings</h2>
+          <div class="form-grid three">
+            <label>Date
+              <input id="ratingDate" type="date" />
+            </label>
+            <label>Context
+              <input id="ratingContext" placeholder="Training / Match / Trial" />
+            </label>
           </div>
-          <button id="loadLiveLineupBtn">Load Lineup</button>
+          <div id="ratingsForm" class="ratings-grid"></div>
+          <button id="saveRatingsBtn" type="button">Save Ratings</button>
+        </div>
 
-          <div class="live-scoreboard">
-            <div>
-              <p class="eyebrow">Match clock</p>
-              <h2 id="liveClock">00:00</h2>
-              <p id="liveStatus" class="muted">No live match loaded</p>
-            </div>
-            <div class="live-controls">
-              <button id="startLiveBtn">Start</button>
-              <button id="pauseLiveBtn" class="secondary">Pause</button>
-              <button id="halfTimeBtn" class="secondary">Half Time</button>
-              <button id="secondHalfBtn" class="secondary">Second Half</button>
-              <button id="fullTimeBtn" class="danger">Full Time</button>
-            </div>
-          </div>
+        <div class="card">
+          <h2>Rating History</h2>
+          <div id="ratingsHistory" class="list"></div>
+        </div>
+      </section>
 
-          <div class="grid two">
-            <div class="live-box">
-              <p class="eyebrow">Substitution</p><h4>Add substitution</h4>
-              <div class="grid two"><label>Minute<input id="subMinute" type="number" min="0" placeholder="Auto"></label><label>Player off<select id="subOffSelect"></select></label></div>
-              <label>Player on<select id="subOnSelect"></select></label>
-              <button id="addSubBtn">Add Substitution</button>
+      <section id="lineup" class="view">
+        <div class="grid lineup-grid">
+          <div class="card">
+            <h2>Match Day Lineup</h2>
+            <div class="form-grid three">
+              <label>Opponent
+                <input id="lineupOpponent" placeholder="Opponent" />
+              </label>
+              <label>Date
+                <input id="lineupDate" type="date" />
+              </label>
+              <label>Formation
+                <select id="formationSelect"></select>
+              </label>
             </div>
-            <div class="live-box">
-              <p class="eyebrow">Events</p><h4>Log event</h4>
-              <div class="grid two"><label>Minute<input id="eventMinute" type="number" min="0" placeholder="Auto"></label><label>Type<select id="eventType"><option>Goal</option><option>Assist</option><option>Yellow Card</option><option>Red Card</option><option>Custom Event</option></select></label></div>
-              <label>Player<select id="eventPlayerSelect"></select></label>
-              <label>Note<input id="eventNote" placeholder="Optional note"></label>
-              <button id="addEventBtn">Add Event</button>
-            </div>
+
+            <p class="move-notice hidden" id="moveNotice"></p>
+            <div id="pitch" class="pitch"></div>
+            <p class="hint">Laptop: drag players between positions. Phone: tap a player, use Move / Swap, then tap the new position.</p>
+
+            <h3>Bench</h3>
+            <div id="benchList" class="bench-list"></div>
+
+            <label>Notes
+              <textarea id="lineupNotes" placeholder="Game plan notes"></textarea>
+            </label>
+
+            <button id="saveLineupBtn" type="button">Save Lineup</button>
           </div>
 
-          <div class="section-title"><h4>Live player minutes</h4></div>
-          <div id="livePlayersList" class="list"></div>
+          <div class="card">
+            <h2>Saved Lineups</h2>
+            <div id="lineupsList" class="list"></div>
+          </div>
+        </div>
+      </section>
 
-          <div class="grid two">
-            <div><div class="section-title"><h4>Sub history</h4></div><div id="liveSubsList" class="list"></div></div>
-            <div><div class="section-title"><h4>Event history</h4></div><div id="liveEventsList" class="list"></div></div>
+      <section id="live" class="view">
+        <div class="grid two">
+          <div class="card">
+            <h2>Live Match Manager</h2>
+            <label>Load saved lineup
+              <select id="liveLineupSelect"></select>
+            </label>
+            <button id="loadLiveLineupBtn" type="button">Load Lineup</button>
+
+            <div class="score-row">
+              <label>For
+                <input id="scoreFor" type="number" min="0" value="0" />
+              </label>
+              <label>Against
+                <input id="scoreAgainst" type="number" min="0" value="0" />
+              </label>
+            </div>
+
+            <div class="clock-card">
+              <strong id="liveClock">00:00</strong>
+              <span id="liveStatus">Not started</span>
+            </div>
+
+            <div class="button-row wrap-buttons">
+              <button id="startLiveBtn" type="button">Start</button>
+              <button id="pauseLiveBtn" type="button" class="secondary">Pause</button>
+              <button id="halfTimeBtn" type="button" class="secondary">Half Time</button>
+              <button id="secondHalfBtn" type="button" class="secondary">Second Half</button>
+              <button id="fullTimeBtn" type="button" class="danger">Full Time</button>
+            </div>
+
+            <h3>Substitution</h3>
+            <div class="form-grid three">
+              <label>Off
+                <select id="subOff"></select>
+              </label>
+              <label>On
+                <select id="subOn"></select>
+              </label>
+              <label>Minute
+                <input id="subMinute" type="number" min="0" />
+              </label>
+            </div>
+            <button id="addSubBtn" type="button">Add Substitution</button>
+
+            <h3>Event</h3>
+            <div class="form-grid three">
+              <label>Type
+                <select id="eventType">
+                  <option>Goal</option>
+                  <option>Assist</option>
+                  <option>Yellow Card</option>
+                  <option>Red Card</option>
+                  <option>Opposition Goal</option>
+                  <option>Custom</option>
+                </select>
+              </label>
+              <label>Player
+                <select id="eventPlayer"></select>
+              </label>
+              <label>Minute
+                <input id="eventMinute" type="number" min="0" />
+              </label>
+            </div>
+            <label>Note
+              <input id="eventNote" placeholder="Optional note" />
+            </label>
+            <button id="addEventBtn" type="button">Add Event</button>
+            <button id="saveLiveMatchBtn" type="button" class="wide">Save Live Match Summary</button>
           </div>
 
-          <button id="saveLiveMatchBtn">Save Live Match Summary</button>
+          <div class="card">
+            <h2>Live Summary</h2>
+            <div id="liveSummary"></div>
+            <h3>Saved Live Matches</h3>
+            <div id="liveMatchesList" class="list"></div>
+          </div>
+        </div>
+      </section>
 
-          <div class="section-title"><h4>Saved live match summaries</h4></div>
-          <div id="liveMatchesList" class="list"></div>
-        </section>
+      <section id="reports" class="view">
+        <div class="grid two">
+          <div class="card">
+            <h2>Match Report</h2>
+            <div class="form-grid">
+              <label>Opponent
+                <input id="reportOpponent" />
+              </label>
+              <label>Date
+                <input id="reportDate" type="date" />
+              </label>
+              <label>Score
+                <input id="reportScore" placeholder="2-1" />
+              </label>
+              <label>Positives
+                <textarea id="reportPositives"></textarea>
+              </label>
+              <label>Improvements
+                <textarea id="reportImprovements"></textarea>
+              </label>
+              <label>Summary
+                <textarea id="reportSummary"></textarea>
+              </label>
+            </div>
+            <button id="saveReportBtn" type="button">Save Report</button>
+          </div>
 
-        <section id="ratings" class="panel card">
-          <p class="eyebrow">Player Ratings</p><h3>Rate players</h3>
-          <div class="grid two"><label>Date<input id="ratingsDate" type="date"></label><label>Context<input id="ratingsContext" placeholder="Training / Match vs..."></label></div>
-          <div id="ratingsList" class="list"></div>
-          <button id="saveRatingsBtn">Save ratings</button>
-          <div class="section-title"><h4>Ratings history</h4></div><div id="ratingsHistory" class="list"></div>
-        </section>
-
-        <section id="reports" class="panel card">
-          <p class="eyebrow">Match Reports</p><h3>Write match report</h3>
-          <div class="grid three"><label>Opponent<input id="matchOpponent" placeholder="Opposition"></label><label>Date<input id="matchDate" type="date"></label><label>Score<input id="matchScore" placeholder="2-1 Win"></label></div>
-          <div class="grid two"><label>What went well<textarea id="matchPositives"></textarea></label><label>What to improve<textarea id="matchImprove"></textarea></label></div>
-          <label>Coach summary<textarea id="matchSummary"></textarea></label>
-          <button id="saveMatchBtn">Save match report</button>
-          <div class="section-title"><h4>Saved reports</h4></div><div id="matchesList" class="list"></div>
-        </section>
+          <div class="card">
+            <h2>Saved Reports</h2>
+            <div id="reportsList" class="list"></div>
+          </div>
+        </div>
       </section>
     </main>
+  </div>
 
-  <div id="playerPickerModal" class="picker-modal hidden">
-    <div class="picker-card">
-      <p class="eyebrow">Assign player</p>
-      <h3 id="pickerTitle">Select player</h3>
-      <label>Squad player<select id="playerPickerSelect"></select></label>
-      <div class="actions picker-actions"><button id="savePickedPlayerBtn">Assign</button><button id="movePickedPlayerBtn" class="secondary">Move / Swap</button><button id="clearPickedPlayerBtn" class="secondary">Clear</button><button id="closePickerBtn" class="ghost">Cancel</button></div>
+  <div id="playerPickerModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="pickerTitle">Select player</h2>
+      <select id="pickerSelect"></select>
+      <div class="button-row wrap-buttons">
+        <button id="assignPickerBtn" type="button">Assign</button>
+        <button id="movePickerBtn" type="button" class="secondary">Move / Swap</button>
+        <button id="clearPickerBtn" type="button" class="secondary">Clear</button>
+        <button id="closePickerBtn" type="button" class="ghost">Cancel</button>
+      </div>
     </div>
   </div>
 
-    <footer>Coach Toolkit MVP</footer>
-  </div>
-  <script src="config.js"></script>
-  
-<script>
-/* Emergency global helpers — must exist before script.js runs */
-window.renderLiveLineupOptions = window.renderLiveLineupOptions || function(){
-  try {
-    var el = document.getElementById('liveLineupSelect');
-    if (!el) return;
+  <div id="toast" class="toast hidden"></div>
 
-    var current = el.value || '';
-    var sourceLineups = window.lineups || [];
-
-    if (!Array.isArray(sourceLineups) || sourceLineups.length === 0) {
-      el.innerHTML = '<option value="">No saved lineups yet</option>';
-      return;
-    }
-
-    el.innerHTML = '<option value="">Select saved lineup</option>' + sourceLineups.map(function(l){
-      var label = (l.match_date || 'No date') + ' — ' + (l.formation || 'Formation') + ' vs ' + (l.opponent || 'Opponent');
-      var selected = l.id === current ? ' selected' : '';
-      return '<option value="' + l.id + '"' + selected + '>' + label.replace(/[&<>"']/g, function(m){
-        return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[m];
-      }) + '</option>';
-    }).join('');
-
-    if (current) el.value = current;
-  } catch (e) {
-    console.warn('renderLiveLineupOptions shim warning:', e);
-  }
-};
-
-function renderLiveLineupOptions(){
-  return window.renderLiveLineupOptions();
-}
-
-window.fetchLiveMatches = window.fetchLiveMatches || async function(){ return; };
-</script>
-
-<script src="script.js?v=shim1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js?v=1"></script>
+  <script src="script.js?v=v4clean1"></script>
 </body>
 </html>
