@@ -121,11 +121,33 @@
   }
 
   function initSupabase() {
-    if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY || !window.supabase) {
-      setMessage("authMsg", "Missing Supabase config. Check config.js.");
+    const url =
+      window.SUPABASE_URL ||
+      (typeof SUPABASE_URL !== "undefined" ? SUPABASE_URL : null) ||
+      window.supabaseUrl ||
+      window.SUPABASE_PROJECT_URL ||
+      null;
+
+    const key =
+      window.SUPABASE_ANON_KEY ||
+      (typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : null) ||
+      window.supabaseAnonKey ||
+      window.SUPABASE_KEY ||
+      null;
+
+    if (!url || !key || !window.supabase) {
+      setMessage("authMsg", "Supabase config not found. Keep config.js in the GitHub root and make sure it has SUPABASE_URL and SUPABASE_ANON_KEY.");
+      console.warn("Coach Toolkit config check", {
+        hasWindowUrl: Boolean(window.SUPABASE_URL),
+        hasLexicalUrl: typeof SUPABASE_URL !== "undefined",
+        hasWindowKey: Boolean(window.SUPABASE_ANON_KEY),
+        hasLexicalKey: typeof SUPABASE_ANON_KEY !== "undefined",
+        hasSupabaseLibrary: Boolean(window.supabase)
+      });
       return false;
     }
-    state.sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+
+    state.sb = window.supabase.createClient(url, key);
     return true;
   }
 

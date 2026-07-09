@@ -1,32 +1,34 @@
-# Coach Toolkit V4 Clean Rebuild
+# Coach Toolkit V4 UI + Config Fix
 
-This is a clean rebuild, not a patch.
+This fixes the current login issue and improves the UI.
 
-## What is included
+## Main fix
 
-- Electric blue / black UI
-- Cleaner app structure
-- Login / signup
-- Team profile
-- Player database
-- Training session planner
-- Attendance tracking
-- Player ratings
-- Match Day Lineup pitch view
-- Formation-ordered Starting XI text
-- Unique player allocation
-- Desktop drag/drop on pitch
-- Phone tap-to-move / swap
-- Live Match Manager
-- Substitution and event logging
-- Saved live match summaries
-- Match reports
-- Responsive laptop / phone layout
-- Logo SVG
+The previous V4 was checking only:
+
+window.SUPABASE_URL
+window.SUPABASE_ANON_KEY
+
+Your config.js likely uses:
+
+const SUPABASE_URL = "..."
+const SUPABASE_ANON_KEY = "..."
+
+This update supports both styles.
+
+## UI changes
+
+- Cleaner desktop login layout
+- Less empty vertical space
+- Better hero section
+- More professional login card
+- Better spacing and sizing
+- Improved mobile layout
+- Keeps electric blue / black brand direction
 
 ## Upload instructions
 
-Replace these files in your GitHub root:
+Replace these files in GitHub root:
 
 - index.html
 - style.css
@@ -39,30 +41,24 @@ Do not replace:
 
 - config.js
 
-Your existing config.js should stay exactly as-is.
-
 ## Supabase
 
-Run this once in Supabase > SQL Editor > New Query:
+If you already ran database-v4-upgrade.sql, you do not need to run it again.
+
+If you have not run it yet, run:
 
 database-v4-upgrade.sql
 
-It is safe to run more than once.
+## Test
 
-## Test URL
+Open:
 
-After committing to GitHub, wait 2-3 minutes and open:
+https://antsev57.github.io/test/?v=v4ui2
 
-https://antsev57.github.io/test/?v=v4clean1
-
-Then hard refresh:
+Hard refresh:
 
 Command + Shift + R
 
-## Build check
-
 You should see:
 
-Build: v4clean1 · stable rebuild
-
-If you do not see that, GitHub Pages is still serving the old files.
+Build: v4ui2 · config fixed + improved UI
