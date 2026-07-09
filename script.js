@@ -93,6 +93,15 @@
     setTimeout(() => el.classList.add("hidden"), 2400);
   }
 
+  function scrollToLoginPanel(focusPassword = false) {
+    const panel = $("loginPanel");
+    if (panel) panel.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => {
+      const target = focusPassword ? $("authPassword") : $("authEmail");
+      if (target) target.focus();
+    }, 350);
+  }
+
   function setMessage(id, message) {
     const el = $(id);
     if (el) el.textContent = message || "";
@@ -102,6 +111,7 @@
     $("authView").classList.remove("hidden");
     $("appView").classList.add("hidden");
     $("logoutBtn").classList.add("hidden");
+    if ($("topLoginBtn")) $("topLoginBtn").classList.remove("hidden");
     $("userEmail").textContent = "";
   }
 
@@ -109,6 +119,7 @@
     $("authView").classList.add("hidden");
     $("appView").classList.remove("hidden");
     $("logoutBtn").classList.remove("hidden");
+    if ($("topLoginBtn")) $("topLoginBtn").classList.add("hidden");
     $("userEmail").textContent = state.user?.email || "";
   }
 
@@ -203,6 +214,9 @@
   function bindEvents() {
     $("loginBtn").addEventListener("click", login);
     $("signupBtn").addEventListener("click", signup);
+    if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
     $("logoutBtn").addEventListener("click", logout);
     $("saveProfileBtn").addEventListener("click", saveProfile);
     $("addPlayerBtn").addEventListener("click", addPlayer);

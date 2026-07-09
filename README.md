@@ -1,21 +1,19 @@
-# Coach Toolkit V4 Hover Fix
+# Coach Toolkit V4 Homepage Login Update
 
-This fixes the issue where pitch position circles move when you hover over them.
+This update adds a clear Login button to the public home page and improves the public homepage positioning.
 
-## What caused it
+## What changed
 
-The app has a normal button hover effect:
-
-button:hover { transform: translateY(-1px); }
-
-That is fine for normal buttons, but the pitch circles are also buttons. The hover effect was overriding their positioning transform.
-
-## What this fixes
-
-- ST / GK / CB / etc. no longer move when the cursor hovers over them.
-- Pitch circles stay locked in place.
-- Keeps production polish UI.
-- Keeps all V4 features.
+- Added top-right Login button for logged-out users
+- Added Login and Create Account buttons in the hero section
+- Login buttons scroll to the login panel
+- Added stronger homepage positioning:
+  Built for grassroots, academy, NPL and representative-level coaches
+- Added feature cards:
+  Squad Database, Match Day Lineup, Live Match
+- Keeps hover fix
+- Keeps production polish UI
+- Keeps all V4 features
 
 ## Upload instructions
 
@@ -36,7 +34,7 @@ Do not replace:
 
 Open:
 
-https://antsev57.github.io/test/?v=hoverfix1
+https://antsev57.github.io/test/?v=home1
 
 Hard refresh:
 
@@ -44,4 +42,4 @@ Command + Shift + R
 
 ## Supabase
 
-No SQL change needed.
+No SQL change required.

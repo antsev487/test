@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Coach Toolkit V4</title>
   <link rel="icon" href="logo.svg" />
-  <link rel="stylesheet" href="style.css?v=hoverfix1" />
+  <link rel="stylesheet" href="style.css?v=home1" />
 </head>
 <body>
   <div class="app-shell">
@@ -19,6 +19,7 @@
       </div>
       <div class="top-actions">
         <span id="userEmail" class="user-email"></span>
+        <button id="topLoginBtn" class="ghost top-login-btn" type="button">Login</button>
         <button id="logoutBtn" class="ghost hidden" type="button">Logout</button>
       </div>
     </header>
@@ -26,16 +27,36 @@
       <div class="auth-copy">
         <p class="eyebrow">Football coaching workspace</p>
         <h1>Run your team from one clean dashboard.</h1>
-        <p>Players, attendance, ratings, lineups, live match tracking and reports — built for coaches on laptop and phone.</p>
+        <p>Built for grassroots, academy, NPL and representative-level coaches who need a cleaner way to manage players, sessions, lineups and match day.</p>
+        <div class="hero-cta-row">
+          <button id="heroLoginBtn" type="button">Login</button>
+          <button id="heroCreateBtn" type="button" class="secondary">Create Account</button>
+        </div>
         <div class="hero-pills">
           <span>Squad database</span>
-          <span>Match lineups</span>
-          <span>Live substitutions</span>
+          <span>Starting XI</span>
+          <span>Live match manager</span>
+          <span>Attendance & ratings</span>
           <span>Reports</span>
         </div>
       </div>
 
-      <div class="card auth-panel">
+      <div id="homeFeatureGrid" class="home-feature-grid">
+        <div class="home-feature-card">
+          <strong>Squad Database</strong>
+          <span>Track players, positions, ratings and attendance.</span>
+        </div>
+        <div class="home-feature-card">
+          <strong>Match Day Lineup</strong>
+          <span>Build formations, bench lists and starting XI notes.</span>
+        </div>
+        <div class="home-feature-card">
+          <strong>Live Match</strong>
+          <span>Record subs, events, scores and player minutes.</span>
+        </div>
+      </div>
+
+      <div id="loginPanel" class="card auth-panel">
         <h2>Coach Login</h2>
         <label>Email
           <input id="authEmail" type="email" autocomplete="email" placeholder="coach@email.com" />
@@ -376,6 +397,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js?v=1"></script>
-  <script src="script.js?v=hoverfix1"></script>
+  <script src="script.js?v=home1"></script>
 </body>
 </html>
