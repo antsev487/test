@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Coach Toolkit V4</title>
   <link rel="icon" href="logo.svg" />
-  <link rel="stylesheet" href="style.css?v=v4ui2" />
+  <link rel="stylesheet" href="style.css?v=prod1" />
 </head>
 <body>
   <div class="app-shell">
@@ -14,7 +14,7 @@
         <img src="logo.svg" alt="Coach Toolkit logo" />
         <div>
           <strong>Coach Toolkit</strong>
-          <span>Football Coach Workspace</span>
+          <span>Team Management Platform</span>
         </div>
       </div>
       <div class="top-actions">
@@ -22,10 +22,7 @@
         <button id="logoutBtn" class="ghost hidden" type="button">Logout</button>
       </div>
     </header>
-
-    <div id="buildBadge" class="build-badge">Build: v4ui2 · config fixed + improved UI</div>
-
-    <section id="authView" class="auth-card">
+<section id="authView" class="auth-card">
       <div class="auth-copy">
         <p class="eyebrow">Football coaching workspace</p>
         <h1>Run your team from one clean dashboard.</h1>
@@ -66,6 +63,16 @@
       </nav>
 
       <section id="dashboard" class="view active">
+        <div id="dashboardHero" class="dashboard-hero">
+          <div>
+            <p class="eyebrow">Coach command centre</p>
+            <h1>Manage your squad, sessions and match day.</h1>
+          </div>
+          <div class="hero-mini-card">
+            <strong>Ready for game day</strong>
+            <span>Lineups · Subs · Events · Reports</span>
+          </div>
+        </div>
         <div class="grid two">
           <div class="card">
             <h2>Team Profile</h2>
@@ -91,7 +98,13 @@
               <div><strong id="countLineups">0</strong><span>Lineups</span></div>
               <div><strong id="countLive">0</strong><span>Live matches</span></div>
             </div>
-            <p class="muted">V4 is a clean rebuild: fewer moving parts, consistent functions, and safer rendering.</p>
+            <div class="next-actions">
+              <strong>Quick workflow</strong>
+              <span>1. Add squad players</span>
+              <span>2. Build your lineup</span>
+              <span>3. Run live match day</span>
+              <span>4. Save reports</span>
+            </div>
           </div>
         </div>
       </section>
@@ -363,6 +376,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js?v=1"></script>
-  <script src="script.js?v=v4ui2"></script>
+  <script src="script.js?v=prod1"></script>
 </body>
 </html>

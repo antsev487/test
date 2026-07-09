@@ -1,30 +1,17 @@
-# Coach Toolkit V4 UI + Config Fix
+# Coach Toolkit V4 Production Polish
 
-This fixes the current login issue and improves the UI.
+This update removes the dev/test feel and makes the logged-in dashboard cleaner.
 
-## Main fix
+## What changed
 
-The previous V4 was checking only:
-
-window.SUPABASE_URL
-window.SUPABASE_ANON_KEY
-
-Your config.js likely uses:
-
-const SUPABASE_URL = "..."
-const SUPABASE_ANON_KEY = "..."
-
-This update supports both styles.
-
-## UI changes
-
-- Cleaner desktop login layout
-- Less empty vertical space
-- Better hero section
-- More professional login card
-- Better spacing and sizing
-- Improved mobile layout
-- Keeps electric blue / black brand direction
+- Removed visible build/debug badge
+- Removed technical text like "V4 clean rebuild"
+- Cleaner dashboard hero section
+- Better dashboard cards
+- Improved tab container
+- More professional "quick workflow" panel
+- Keeps Supabase config fix
+- Keeps all V4 features
 
 ## Upload instructions
 
@@ -41,24 +28,16 @@ Do not replace:
 
 - config.js
 
-## Supabase
-
-If you already ran database-v4-upgrade.sql, you do not need to run it again.
-
-If you have not run it yet, run:
-
-database-v4-upgrade.sql
-
 ## Test
 
 Open:
 
-https://antsev57.github.io/test/?v=v4ui2
+https://antsev57.github.io/test/?v=prod1
 
 Hard refresh:
 
 Command + Shift + R
 
-You should see:
+## Supabase
 
-Build: v4ui2 · config fixed + improved UI
+No new SQL required if you already ran database-v4-upgrade.sql.
