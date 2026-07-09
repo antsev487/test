@@ -1,16 +1,14 @@
-# Coach Toolkit V4 Homepage Login Update
+# Coach Toolkit V4 Homepage Layout Polish
 
-This update adds a clear Login button to the public home page and improves the public homepage positioning.
+This update improves the public home page layout.
 
 ## What changed
 
-- Added top-right Login button for logged-out users
-- Added Login and Create Account buttons in the hero section
-- Login buttons scroll to the login panel
-- Added stronger homepage positioning:
-  Built for grassroots, academy, NPL and representative-level coaches
-- Added feature cards:
-  Squad Database, Match Day Lineup, Live Match
+- Fixes top-right Login button being clipped/off-screen
+- Makes the hero text more balanced
+- Moves login panel higher and more connected to the hero
+- Integrates feature cards better
+- Keeps homepage Login / Create Account buttons
 - Keeps hover fix
 - Keeps production polish UI
 - Keeps all V4 features
@@ -34,7 +32,7 @@ Do not replace:
 
 Open:
 
-https://antsev57.github.io/test/?v=home1
+https://antsev57.github.io/test/?v=homepolish1
 
 Hard refresh:
 

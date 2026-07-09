@@ -696,3 +696,166 @@ body{
     min-width:140px;
   }
 }
+
+
+/* Homepage layout polish: tighter landing page and fixed header login */
+.app-shell{
+  width:min(1360px,calc(100% - 48px));
+}
+
+.topbar{
+  margin:0 0 14px!important;
+  padding:14px 18px!important;
+  border-radius:0 0 0 0;
+}
+
+.top-actions{
+  flex-shrink:0;
+  margin-left:auto;
+}
+
+.top-login-btn{
+  min-width:94px;
+  justify-content:center;
+  display:inline-flex;
+  align-items:center;
+}
+
+.auth-card{
+  min-height:calc(100vh - 118px);
+  grid-template-columns:minmax(0,1.05fr) minmax(380px,430px);
+  grid-template-areas:
+    "hero login"
+    "features login";
+  align-content:center;
+  align-items:center;
+  column-gap:64px;
+  row-gap:26px;
+  padding:clamp(22px,4vh,44px) 0 26px;
+}
+
+.auth-copy{
+  grid-area:hero;
+  align-self:end;
+  max-width:760px;
+}
+
+.auth-copy h1{
+  max-width:760px;
+  font-size:clamp(3.8rem,5.6vw,6.1rem);
+  line-height:.91;
+  letter-spacing:-.075em;
+}
+
+.auth-copy p:not(.eyebrow){
+  max-width:700px;
+  font-size:1.08rem;
+}
+
+.auth-panel{
+  grid-area:login;
+  align-self:center;
+  justify-self:end;
+  width:100%;
+  max-width:430px;
+  margin-top:0;
+}
+
+.home-feature-grid{
+  grid-area:features;
+  grid-column:auto!important;
+  max-width:760px;
+  margin-top:0;
+  align-self:start;
+}
+
+.home-feature-card{
+  min-height:108px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero-pills{
+  max-width:760px;
+}
+
+.hero-cta-row{
+  margin-top:22px;
+}
+
+@media (min-width:1200px){
+  .auth-panel{
+    transform:translateY(12px);
+  }
+}
+
+@media (max-width:980px){
+  .app-shell{
+    width:100%;
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .topbar{
+    margin:0 -12px 10px!important;
+    border-radius:0;
+  }
+
+  .auth-card{
+    min-height:auto;
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "hero"
+      "login"
+      "features";
+    row-gap:18px;
+    padding:22px 0 24px;
+  }
+
+  .auth-copy{
+    align-self:auto;
+  }
+
+  .auth-copy h1{
+    font-size:clamp(2.8rem,12vw,4.6rem);
+  }
+
+  .auth-panel{
+    max-width:none;
+    justify-self:stretch;
+    transform:none;
+  }
+
+  .home-feature-grid{
+    max-width:none;
+  }
+}
+
+@media (max-width:560px){
+  .topbar{
+    padding:10px 12px!important;
+  }
+
+  .top-actions{
+    max-width:112px;
+  }
+
+  .top-login-btn{
+    min-width:72px;
+    padding:0 .8rem;
+  }
+
+  .auth-copy h1{
+    font-size:clamp(2.7rem,15vw,3.7rem);
+  }
+
+  .auth-copy p:not(.eyebrow){
+    font-size:.98rem;
+  }
+
+  .hero-cta-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+}
