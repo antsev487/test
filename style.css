@@ -2614,3 +2614,17 @@ body{
     aspect-ratio:16 / 9.8 !important;
   }
 }
+
+
+/* LINEUP IMAGE DIMENSION FIX */
+.simple-features.with-images article img.dashboard-card-image{
+  object-fit:contain !important;
+  object-position:center center !important;
+  background:#06152c !important;
+}
+
+.simple-features.with-images article img.lineup-card-image{
+  object-fit:cover !important;
+  object-position:top center !important;
+  background:#06152c !important;
+}

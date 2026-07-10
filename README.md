@@ -1,13 +1,13 @@
-# Coach Toolkit Simple Homepage Feature Image Fix
+# Coach Toolkit Lineup Image Dimension Fix
 
-This update keeps the simple homepage and fixes the feature card images.
+This keeps the simple homepage and fixes only the Lineups feature image.
 
 ## What changed
 
-- Squad card uses dashboard-preview.jpg once.
-- Lineups card uses lineup-preview.jpg.
-- Match Day card is now text-only, so the dashboard image is not duplicated.
-- Feature images now use object-fit: contain, so the whole screenshot is shown instead of being cropped.
+- Squad/dashboard image still uses object-fit: contain so the whole dashboard screenshot is visible.
+- Lineups image now uses object-fit: cover again, so it displays like it did previously.
+- Match Day remains text-only.
+- App functionality unchanged.
 
 ## Upload instructions
 
@@ -29,7 +29,7 @@ Do not replace:
 
 Open:
 
-https://antsev487.github.io/test/?v=featurefix1
+https://antsev487.github.io/test/?v=lineupimg1
 
 Then hard refresh:
 
