@@ -1,23 +1,14 @@
-# Coach Toolkit Simple Homepage
+# Coach Toolkit Simple Homepage with Feature Images
 
-This strips the homepage back to a simple clean version.
+This keeps the simple homepage and adds existing images from the assets folder into the feature cards.
 
-## Structure
+## What changed
 
-- Header
-- Centred headline
-- Short subtitle
-- Login card
-- Three feature cards
-- Bottom call-to-action
-
-## Removed
-
-- Complex hero layout
-- Product screenshots
-- Floating login card
-- Large empty homepage gap
-- Overworked market sections
+- Added dashboard image to Squad card
+- Added lineup image to Lineups card
+- Added dashboard workflow image to Match Day card
+- Kept the simple homepage structure
+- Kept app functionality
 
 ## Upload instructions
 
@@ -29,7 +20,7 @@ Replace these in GitHub root:
 - README.md
 - logo.svg
 - .nojekyll
-- assets/ if included
+- assets/
 
 Do not replace:
 
@@ -39,12 +30,8 @@ Do not replace:
 
 Open:
 
-https://antsev487.github.io/test/?v=simplehome1
+https://antsev487.github.io/test/?v=simpleimg1
 
 Then hard refresh:
 
 Command + Shift + R
-
-Also reset browser zoom:
-
-Command + 0

@@ -2534,3 +2534,36 @@ body{
     align-items:stretch !important;
   }
 }
+
+
+/* SIMPLE FEATURE CARD IMAGES */
+.simple-features.with-images article{
+  padding:0 !important;
+  overflow:hidden !important;
+  min-height:auto !important;
+  display:grid !important;
+  grid-template-rows:auto 1fr !important;
+}
+
+.simple-features.with-images article img{
+  display:block !important;
+  width:100% !important;
+  aspect-ratio:16 / 9 !important;
+  object-fit:cover !important;
+  object-position:top center !important;
+  border-bottom:1px solid rgba(67,243,255,.18) !important;
+}
+
+.simple-features.with-images article div{
+  padding:16px !important;
+}
+
+.simple-features.with-images strong{
+  margin-bottom:6px !important;
+}
+
+@media (max-width: 760px){
+  .simple-features.with-images article img{
+    aspect-ratio:16 / 8.8 !important;
+  }
+}
