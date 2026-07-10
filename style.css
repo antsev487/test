@@ -2567,3 +2567,50 @@ body{
     aspect-ratio:16 / 8.8 !important;
   }
 }
+
+
+/* FEATURE IMAGE FIX */
+.simple-features.with-images article{
+  overflow:hidden !important;
+}
+
+.simple-features.with-images article img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:16 / 9 !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  background:#06152c !important;
+  border-bottom:1px solid rgba(67,243,255,.18) !important;
+}
+
+.simple-features.with-images article.text-only-feature{
+  display:flex !important;
+  align-items:center !important;
+  min-height:100% !important;
+  padding:0 !important;
+  background:
+    radial-gradient(circle at top left, rgba(24,200,255,.13), transparent 18rem),
+    linear-gradient(180deg, rgba(7,22,48,.92), rgba(3,10,25,.88)) !important;
+}
+
+.simple-features.with-images article.text-only-feature div{
+  padding:24px !important;
+}
+
+.simple-features.with-images article.text-only-feature strong{
+  font-size:1.35rem !important;
+}
+
+.simple-features.with-images article.text-only-feature span{
+  font-size:1rem !important;
+  line-height:1.45 !important;
+}
+
+/* Slightly taller cards so the full screenshots do not feel cramped */
+@media (min-width: 761px){
+  .simple-features.with-images article img{
+    aspect-ratio:16 / 9.8 !important;
+  }
+}

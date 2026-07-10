@@ -1,14 +1,13 @@
-# Coach Toolkit Simple Homepage with Feature Images
+# Coach Toolkit Simple Homepage Feature Image Fix
 
-This keeps the simple homepage and adds existing images from the assets folder into the feature cards.
+This update keeps the simple homepage and fixes the feature card images.
 
 ## What changed
 
-- Added dashboard image to Squad card
-- Added lineup image to Lineups card
-- Added dashboard workflow image to Match Day card
-- Kept the simple homepage structure
-- Kept app functionality
+- Squad card uses dashboard-preview.jpg once.
+- Lineups card uses lineup-preview.jpg.
+- Match Day card is now text-only, so the dashboard image is not duplicated.
+- Feature images now use object-fit: contain, so the whole screenshot is shown instead of being cropped.
 
 ## Upload instructions
 
@@ -30,7 +29,7 @@ Do not replace:
 
 Open:
 
-https://antsev487.github.io/test/?v=simpleimg1
+https://antsev487.github.io/test/?v=featurefix1
 
 Then hard refresh:
 
