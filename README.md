@@ -1,17 +1,27 @@
-# Coach Toolkit V4 Market Ready Homepage — Two Screenshot Version
+# Coach Toolkit Simple Homepage
 
-This version uses only the two screenshots you provided:
+This strips the homepage back to a simple clean version.
 
-- Match Day Lineup screenshot
-- Dashboard / Coach Command Centre screenshot
+## Structure
 
-No fake product image.
-No previous login screenshot.
-No extra product mock image.
+- Header
+- Centred headline
+- Short subtitle
+- Login card
+- Three feature cards
+- Bottom call-to-action
+
+## Removed
+
+- Complex hero layout
+- Product screenshots
+- Floating login card
+- Large empty homepage gap
+- Overworked market sections
 
 ## Upload instructions
 
-Replace these files/folders in GitHub root:
+Replace these in GitHub root:
 
 - index.html
 - style.css
@@ -19,7 +29,7 @@ Replace these files/folders in GitHub root:
 - README.md
 - logo.svg
 - .nojekyll
-- assets/
+- assets/ if included
 
 Do not replace:
 
@@ -29,12 +39,12 @@ Do not replace:
 
 Open:
 
-https://antsev57.github.io/test/?v=market2
+https://antsev487.github.io/test/?v=simplehome1
 
-Hard refresh:
+Then hard refresh:
 
 Command + Shift + R
 
-## Supabase
+Also reset browser zoom:
 
-No SQL change required if you already ran database-v4-upgrade.sql.
+Command + 0

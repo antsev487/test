@@ -147,7 +147,7 @@
       null;
 
     if (!url || !key || !window.supabase) {
-      setMessage("authMsg", "Supabase config not found. Keep config.js in the GitHub root and make sure it has SUPABASE_URL and SUPABASE_ANON_KEY.");
+      setMessage("authMsg", "");
       console.warn("Coach Toolkit config check", {
         hasWindowUrl: Boolean(window.SUPABASE_URL),
         hasLexicalUrl: typeof SUPABASE_URL !== "undefined",
@@ -212,8 +212,20 @@
   }
 
   function bindEvents() {
-    $("loginBtn").addEventListener("click", login);
-    $("signupBtn").addEventListener("click", signup);
+    if ($("loginBtn")) $("loginBtn").addEventListener("click", login);
+    if ($("signupBtn")) $("signupBtn").addEventListener("click", signup);
+    if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("bottomLoginBtn")) $("bottomLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("bottomLoginBtn")) $("bottomLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());
+    if ($("bottomLoginBtn")) $("bottomLoginBtn").addEventListener("click", () => scrollToLoginPanel());
     if ($("topLoginBtn")) $("topLoginBtn").addEventListener("click", () => scrollToLoginPanel());
     if ($("heroLoginBtn")) $("heroLoginBtn").addEventListener("click", () => scrollToLoginPanel());
     if ($("heroCreateBtn")) $("heroCreateBtn").addEventListener("click", () => scrollToLoginPanel());

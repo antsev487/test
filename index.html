@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Coach Toolkit V4</title>
+  <title>Coach Toolkit</title>
   <link rel="icon" href="logo.svg" />
-  <link rel="stylesheet" href="style.css?v=market2" />
+  <link rel="stylesheet" href="style.css?v=simplehome1" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
+  <div class="app-shell simple-shell">
+    <header class="topbar simple-topbar">
       <div class="brand">
         <img src="logo.svg" alt="Coach Toolkit logo" />
         <div>
           <strong>Coach Toolkit</strong>
-          <span>Coach Management Platform</span>
+          <span>Football Coach Management</span>
         </div>
       </div>
       <div class="top-actions">
@@ -24,79 +24,56 @@
       </div>
     </header>
 
-    <section id="authView" class="market-home">
-      <section class="market-hero">
-        <div class="market-copy">
-          <p class="eyebrow">Football coaching workspace</p>
-          <h1>Run your squad, sessions and match day in one place.</h1>
-          <p class="market-subtitle">Built for grassroots, academy, NPL and representative-level coaches who need a cleaner way to manage players, lineups, attendance, live match moments and reports.</p>
+    <section id="authView" class="simple-home">
+      <section class="simple-hero">
+        <p class="eyebrow">Football coaching workspace</p>
+        <h1>Manage your squad, sessions and match day.</h1>
+        <p class="simple-subtitle">
+          A simple coaching toolkit for players, attendance, lineups, live match notes and reports.
+        </p>
 
-          <div class="market-actions">
-            <button id="heroLoginBtn" type="button">Login</button>
-            <button id="heroCreateBtn" type="button" class="secondary">Create Account</button>
-          </div>
-
-          <div class="trust-row">
-            <span>Designed for academy environments</span>
-            <span>NPL-ready workflows</span>
-            <span>Mobile match-day use</span>
-          </div>
+        <div class="simple-actions">
+          <button id="heroLoginBtn" type="button">Login</button>
+          <button id="heroCreateBtn" type="button" class="secondary">Create Account</button>
         </div>
       </section>
 
-      <section class="product-preview-section">
-        <div class="section-heading">
-          <p class="eyebrow">Built around the real coaching workflow</p>
-          <h2>Everything a coach needs before, during and after match day.</h2>
+      <section id="loginPanel" class="card simple-login-card">
+        <h2>Login</h2>
+        <label>Email
+          <input id="authEmail" type="email" autocomplete="email" placeholder="coach@email.com" />
+        </label>
+        <label>Password
+          <input id="authPassword" type="password" autocomplete="current-password" placeholder="Password" />
+        </label>
+        <div class="simple-login-actions">
+          <button id="loginBtn" type="button">Login</button>
+          <button id="signupBtn" type="button" class="secondary">Create Account</button>
         </div>
-
-        <div class="feature-strip">
-          <article>
-            <strong>Squad Database</strong>
-            <span>Track players, positions, attendance and ratings.</span>
-          </article>
-          <article>
-            <strong>Starting XI</strong>
-            <span>Build formations, bench lists and game plans.</span>
-          </article>
-          <article>
-            <strong>Live Match Manager</strong>
-            <span>Record subs, goals, cards, events and minutes.</span>
-          </article>
-          <article>
-            <strong>Coach Reports</strong>
-            <span>Save summaries and keep a record of performance.</span>
-          </article>
-        </div>
-
-        <div class="screenshot-grid two-only">
-          <figure class="screenshot-card">
-            <img src="assets/lineup-preview.jpg" alt="Match Day Lineup screen preview" />
-            <figcaption>
-              <strong>Match Day Lineup</strong>
-              <span>Build your Starting XI, bench and game plan with a clean pitch view.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="screenshot-card">
-            <img src="assets/dashboard-preview.jpg" alt="Coach dashboard screen preview" />
-            <figcaption>
-              <strong>Coach Command Centre</strong>
-              <span>Manage your squad profile, team snapshot and match-day workflow.</span>
-            </figcaption>
-          </figure>
-        </div>
-
+        <p id="authMsg" class="message"></p>
       </section>
 
-      <section class="market-bottom-cta">
-        <div>
-          <p class="eyebrow">Ready for your squad</p>
-          <h2>Start with players. Build your lineup. Run match day.</h2>
-        </div>
+      <section class="simple-features">
+        <article>
+          <strong>Squad</strong>
+          <span>Manage players, positions and availability.</span>
+        </article>
+        <article>
+          <strong>Lineups</strong>
+          <span>Build match-day formations and bench lists.</span>
+        </article>
+        <article>
+          <strong>Match Day</strong>
+          <span>Track subs, goals, events and reports.</span>
+        </article>
+      </section>
+
+      <section class="simple-bottom">
+        <h2>Start simple. Keep everything organised.</h2>
         <button id="bottomLoginBtn" type="button">Login</button>
       </section>
     </section>
+
 
 
     <main id="appView" class="hidden">
@@ -424,6 +401,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js?v=1"></script>
-  <script src="script.js?v=market2"></script>
+  <script src="script.js?v=simplehome1"></script>
 </body>
 </html>
+
