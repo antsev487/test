@@ -2628,3 +2628,23 @@ body{
   object-position:top center !important;
   background:#06152c !important;
 }
+
+
+/* PAGE FLOW FIX — logged out homepage and logged-in app must not show together */
+#authView.hidden,
+#appView.hidden{
+  display:none !important;
+}
+
+#authView[aria-hidden="true"],
+#appView[aria-hidden="true"]{
+  display:none !important;
+}
+
+body.logged-in #authView{
+  display:none !important;
+}
+
+body.logged-out #appView{
+  display:none !important;
+}

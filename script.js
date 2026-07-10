@@ -65,6 +65,52 @@
   };
 
   const $ = (id) => document.getElementById(id);
+
+  function forcePageMode(mode) {
+    const authView = $("authView");
+    const appView = $("appView");
+    const topLoginBtn = $("topLoginBtn");
+    const logoutBtn = $("logoutBtn");
+
+    if (mode === "app") {
+      document.body.classList.add("logged-in");
+      document.body.classList.remove("logged-out");
+      if (authView) {
+        authView.classList.add("hidden");
+        authView.style.display = "none";
+        authView.setAttribute("aria-hidden", "true");
+      }
+      if (appView) {
+        appView.classList.remove("hidden");
+        appView.style.display = "block";
+        appView.removeAttribute("aria-hidden");
+      }
+      if (topLoginBtn) topLoginBtn.classList.add("hidden");
+      if (logoutBtn) logoutBtn.classList.remove("hidden");
+
+      const dashboardTab = document.querySelector('.tab[data-tab="dashboard"]');
+      if (dashboardTab && typeof switchTab === "function") switchTab("dashboard");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    document.body.classList.add("logged-out");
+    document.body.classList.remove("logged-in");
+
+    if (authView) {
+      authView.classList.remove("hidden");
+      authView.style.display = "";
+      authView.removeAttribute("aria-hidden");
+    }
+    if (appView) {
+      appView.classList.add("hidden");
+      appView.style.display = "none";
+      appView.setAttribute("aria-hidden", "true");
+    }
+    if (topLoginBtn) topLoginBtn.classList.remove("hidden");
+    if (logoutBtn) logoutBtn.classList.add("hidden");
+  }
+
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
   const escapeHtml = (value = "") => String(value)
@@ -108,19 +154,13 @@
   }
 
   function showAuth() {
-    $("authView").classList.remove("hidden");
-    $("appView").classList.add("hidden");
-    $("logoutBtn").classList.add("hidden");
-    if ($("topLoginBtn")) $("topLoginBtn").classList.remove("hidden");
-    $("userEmail").textContent = "";
+    forcePageMode("auth");
+    if ($("userEmail")) $("userEmail").textContent = "";
   }
 
   function showApp() {
-    $("authView").classList.add("hidden");
-    $("appView").classList.remove("hidden");
-    $("logoutBtn").classList.remove("hidden");
-    if ($("topLoginBtn")) $("topLoginBtn").classList.add("hidden");
-    $("userEmail").textContent = state.user?.email || "";
+    forcePageMode("app");
+    if ($("userEmail")) $("userEmail").textContent = state.user?.email || "";
   }
 
   function requireUser() {
